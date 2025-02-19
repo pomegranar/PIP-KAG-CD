@@ -3,7 +3,8 @@
 Source code for our paper :
 PIP-KAG: Mitigating Knowledge Conflicts in Knowledge-Augmented Generation via Parametric Pruning (Coming soon...)
 
-
+## Overview
+![method](assets/method.png)
 
 ## Usage Instructions
 (1) Environment Setup Requirements:
@@ -54,6 +55,10 @@ After preparation, you can begin training the PIP-KAG model. The knowledge unins
 cd scripts
 bash 1_pip_uninstall/visualize.sh
 ```
+Running the commands mentioned above will yield the visualization results:
+![method](assets/activations_llama3_8b_instruct.png)
+Based on the visualization results, define a value for $\alpha$ to determine which layers to prune.
+
 (2) Second Step: Uninstall knowledge by pruning FFN sub-layers in $\mathcal{H}_\text{Pruning}$. Execute the following commands:
 ```
 cd scripts
