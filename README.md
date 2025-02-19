@@ -6,14 +6,17 @@ PIP-KAG: Mitigating Knowledge Conflicts in Knowledge-Augmented Generation via Pa
 
 
 ## Usage Instructions
-1. Environment Setup Requirements:
-    - Ensure your system meets the necessary installation requirements.
-2. Download the Model and Adapter Files:
-    - Confirm that you have both the pre-trained model and the adapter files.
-3. Uninstall Knowledge in LLMs and Install the Adaptation Module:
-    - Uninstall knowledge from LLMs and install the adaptation module to enable the pruned model to better leverage external sources, following the guidelines provided below.
-4. Evaluate the Performance of PIP-KAG Models:
-    - Assess the effectiveness of the PIP-KAG models.
+(1) Environment Setup Requirements:
+- Ensure your system meets the necessary installation requirements.
+
+(2) Download the Model and Adapter Files:
+- Confirm that you have both the pre-trained model and the adapter files.
+
+(3) Uninstall Knowledge in LLMs and Install the Adaptation Module:
+- Uninstall knowledge from LLMs and install the adaptation module to enable the pruned model to better leverage external sources, following the guidelines provided below.
+
+(4) Evaluate the Performance of PIP-KAG Models:
+- Assess the effectiveness of the PIP-KAG models.
 
 ## 1. Setup
 (1) Use `git clone` to download this project:
