@@ -1,5 +1,9 @@
 # PIP-KAG: Mitigating Knowledge Conflicts in Knowledge-Augmented Generation via Parametric Pruning
 
+[![HuggingFace](https://img.shields.io/badge/HuggingFace-PIP--KAG--7B-green)](https://huggingface.co/chengpingan/PIP-KAG-7B)
+
+
+
 Source code for our paper :
 PIP-KAG: Mitigating Knowledge Conflicts in Knowledge-Augmented Generation via Parametric Pruning (Coming soon...)
 
@@ -44,7 +48,7 @@ pip install -e .
 ```
 
 ## 2. Download the model and adapter files:
-Our trained model can be found in `xx.huggingface.co`
+Our trained model can be found in [`huggingface.co`](https://huggingface.co/chengpingan/PIP-KAG-7B)
 
 ## 3. PIP-Uinstall & PIP-Install
 ### PIP-Uninstall
