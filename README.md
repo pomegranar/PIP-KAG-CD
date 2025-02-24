@@ -7,20 +7,21 @@
 [![HuggingFace](https://img.shields.io/badge/HuggingFace-CoConflictQA-important)](https://huggingface.co/datasets/chengpingan/CoConflictQA)
 
 
-<p align="center">
+<div align="center">
+<p align="center" dir="auto">
 
-• 🎯 [Introduction](##-introduction) 
-• ⚙️ [Usage Instructions](#-usage-instructions)
+• 🎯 [Introduction](#-introduction) 
+• ⚙️ [Usage Instructions](#%EF%B8%8F-usage-instructions)
 • 🔧 [Setup](#-setup)
-<br>
+</p>
+<p align="center" dir="auto">
+
 • ⚡ [PIP-KAG Pipeline](#-pip-kag-pipeline) 
 • 📃 [Evaluation](#-evaluation) 
 • 📝 [Citation](#-citation)
 • 📨 [Contact](#-contact)
-
 </p>
-
-
+</div>
 
 ## 🎯 Introduction
 We propose a ParametrIc Pruning-based Knowledge-Augmented Generation (PIP-KAG) approach, which prunes internal knowledge of LLMs and incorporates a plug-and-play adaptation module to help LLMs better leverage external sources. 
