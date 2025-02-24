@@ -58,15 +58,15 @@ pip install -e .
 ```
 
 ## 2️⃣ Download the model and adapter files:
-The training and evaluation data for CoConflictQA can be found at:
+The training data and testing data can be downloaded from [CoConflictQA](https://huggingface.co/datasets/chengpingan/PIP-KAG). After downloading, place the files into the data directory using the following structure:
 ```
-data
-├─ train
-    ├─ Training.jsonl
-├─ train
-    ├─ hotpotq_kc.jsonl
-    ├─ NaturalQuestionsShort_kc.jsonl
-    ├─ NewsQA_kc.jsonl
+data/
+├── train/
+│   └── Training.jsonl          # Training data
+└── test/
+    ├── hotpotq_kc.jsonl     
+    ├── NaturalQuestionsShort_kc.jsonl 
+    ├── NewsQA_kc.jsonl        
     ...
 ```
 Our trained model can be found in [`PIP-KAG-7B`](https://huggingface.co/chengpingan/PIP-KAG-7B).
