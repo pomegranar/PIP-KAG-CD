@@ -9,14 +9,14 @@
 
 <p align="center">
 
-• 🎯 [Introduction](#🎯-introduction) 
-• ⚙️ [Usage Instructions](#⚙️-usage-instructions)
-• 🔧 [Setup](#🔧-setup)
+• 🎯 [Introduction](##-introduction) 
+• ⚙️ [Usage Instructions](#-usage-instructions)
+• 🔧 [Setup](#-setup)
 <br>
-• ⚡ [PIP-KAG Pipeline](#⚡-pip-kag-pipeline) 
-• 📃 [Evaluation](#📃-evaluation) 
-• 📝 [Citation](#📝-citation)
-• 📨 [Contact](#📨-contact)
+• ⚡ [PIP-KAG Pipeline](#-pip-kag-pipeline) 
+• 📃 [Evaluation](#-evaluation) 
+• 📝 [Citation](#-citation)
+• 📨 [Contact](#-contact)
 
 </p>
 
