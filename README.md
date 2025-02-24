@@ -12,22 +12,15 @@ Click the links below to view our papers, checkpoints, and published models:
 
 
 If you find this work useful, please cite our paper and give us a shining star 🌟
-```
-@misc{huang2025pipkagmitigatingknowledgeconflicts,
-      title={PIP-KAG: Mitigating Knowledge Conflicts in Knowledge-Augmented Generation via Parametric Pruning}, 
-      author={Pengcheng Huang and Zhenghao Liu and Yukun Yan and Xiaoyuan Yi and Hao Chen and Zhiyuan Liu and Maosong Sun and Tong Xiao and Ge Yu and Chenyan Xiong},
-      year={2025},
-      eprint={2502.15543},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2502.15543}, 
-}
-```
 
-## Overview
+
+## 🎯 Overview
+We propose a ParametrIc Pruning-based Knowledge-Augmented Generation (PIP-KAG) approach, which prunes internal knowledge of LLMs and incorporates a plug-and-play adaptation module to help LLMs better leverage external sources. 
+
+Experimental results on CoConflictQA demonstrate that PIP-KAG significantly reduces knowledge conflicts and improves context fidelity. Notably, PIP-KAG reduces LLM's parameters by 13%, enhancing parameter efficiency in LLMs within the KAG framework.
 ![method](assets/method.png)
 
-## Usage Instructions
+## ⚙️ Usage Instructions
 (1) Environment Setup Requirements:
 - Ensure your system meets the necessary installation requirements.
 
@@ -40,7 +33,7 @@ If you find this work useful, please cite our paper and give us a shining star �
 (4) Evaluate the Performance of PIP-KAG Models:
 - Assess the effectiveness of the PIP-KAG models.
 
-## 1. Setup
+## 1️⃣ Setup
 (1) Use `git clone` to download this project:
 ```
 git clone git@github.com:OpenBMB/PIP-KAG.git
@@ -64,10 +57,22 @@ cd src/transformers
 pip install -e .
 ```
 
-## 2. Download the model and adapter files:
-Our trained model can be found in [`huggingface.co`](https://huggingface.co/chengpingan/PIP-KAG-7B)
+## 2️⃣ Download the model and adapter files:
+The training and evaluation data for CoConflictQA can be found at:
+```
+data
+├─ train
+    ├─ Training.jsonl
+├─ train
+    ├─ hotpotq_kc.jsonl
+    ├─ NaturalQuestionsShort_kc.jsonl
+    ├─ NewsQA_kc.jsonl
+    ...
+```
+Our trained model can be found in [`PIP-KAG-7B`](https://huggingface.co/chengpingan/PIP-KAG-7B).
 
-## 3. PIP-Uinstall & PIP-Install
+
+## 3️⃣ PIP-Uinstall & PIP-Install
 ### PIP-Uninstall
 After preparation, you can begin training the PIP-KAG model. The knowledge uninstallation process consists of two main steps:
 
@@ -100,16 +105,34 @@ cd scripts
 bash utils/merge_lora.sh
 ```
 
-## 4. Evaluating PIP-KAG
-After training the PIP-KAG model, you can test the performance of PIP-KAG with the test data provided in `/data`.
+## 4️⃣ Evaluating PIP-KAG
+You can evaluate the performance of PIP-KAG in two ways:
 
-(1) You can feed the test dataset into the PIP-KAG to generate the responses and evaluate the effects of PIP-KAG.
+(1) Follow the scripts provided above to test your reproduced model using the test data located in `/data/eval`.
+
+(2) Alternatively, you can directly download our pre-trained model from [`PIP-KAG-7B`](https://huggingface.co/chengpingan/PIP-KAG-7B). and run the evaluation without additional training.
+After training the PIP-KAG model, you can test the performance of PIP-KAG with the test data provided in .
+
 ```
 cd scripts
 bash Evaluation/evaluate_coconflictqa.sh
 ```
 
-## Contact
+## 📝 Citation
+Please cite our paper if it's helpful to your work!
+```
+@misc{huang2025pipkagmitigatingknowledgeconflicts,
+      title={PIP-KAG: Mitigating Knowledge Conflicts in Knowledge-Augmented Generation via Parametric Pruning}, 
+      author={Pengcheng Huang and Zhenghao Liu and Yukun Yan and Xiaoyuan Yi and Hao Chen and Zhiyuan Liu and Maosong Sun and Tong Xiao and Ge Yu and Chenyan Xiong},
+      year={2025},
+      eprint={2502.15543},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2502.15543}, 
+}
+```
+
+## 📨 Contact
 If you have questions, suggestions, and bug reports, please email:
 ```
 hpc1449181552@outlook.com
