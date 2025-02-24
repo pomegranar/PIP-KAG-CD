@@ -1,11 +1,29 @@
 # PIP-KAG: Mitigating Knowledge Conflicts in Knowledge-Augmented Generation via Parametric Pruning
 
+
+
+
+Source code for our paper:
+
+[PIP-KAG: Mitigating Knowledge Conflicts in Knowledge-Augmented Generation via Parametric Pruning](https://arxiv.org/pdf/2502.15543)
+
+Click the links below to view our papers, checkpoints, and published models:
+[![arxiv](https://img.shields.io/badge/arxiv-2502.15543-orange)](https://arxiv.org/pdf/2502.15543)
 [![HuggingFace](https://img.shields.io/badge/HuggingFace-PIP--KAG--7B-green)](https://huggingface.co/chengpingan/PIP-KAG-7B)
 
 
-
-Source code for our paper :
-PIP-KAG: Mitigating Knowledge Conflicts in Knowledge-Augmented Generation via Parametric Pruning (Coming soon...)
+If you find this work useful, please cite our paper and give us a shining star 🌟
+```
+@misc{huang2025pipkagmitigatingknowledgeconflicts,
+      title={PIP-KAG: Mitigating Knowledge Conflicts in Knowledge-Augmented Generation via Parametric Pruning}, 
+      author={Pengcheng Huang and Zhenghao Liu and Yukun Yan and Xiaoyuan Yi and Hao Chen and Zhiyuan Liu and Maosong Sun and Tong Xiao and Ge Yu and Chenyan Xiong},
+      year={2025},
+      eprint={2502.15543},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2502.15543}, 
+}
+```
 
 ## Overview
 ![method](assets/method.png)
