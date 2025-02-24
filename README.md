@@ -7,9 +7,9 @@ Source code for our paper: [PIP-KAG: Mitigating Knowledge Conflicts in Knowledge
 
 Click the links below to explore our **papers**, **checkpoints**, and **datasets**:
 
-[![arxiv](https://img.shields.io/badge/arxiv-📄2502.15543-lightgrey)](https://arxiv.org/pdf/2502.15543)
-[![HuggingFace](https://img.shields.io/badge/HuggingFace-🤖PIP--KAG--7B-yellowgreen)](https://huggingface.co/chengpingan/PIP-KAG-7B)
-[![HuggingFace](https://img.shields.io/badge/HuggingFace-📊CoConflictQA-important)](https://huggingface.co/datasets/chengpingan/CoConflictQA)
+[![arxiv](https://img.shields.io/badge/arxiv-2502.15543-lightgrey)](https://arxiv.org/pdf/2502.15543)
+[![HuggingFace](https://img.shields.io/badge/HuggingFace-PIP--KAG--7B-yellowgreen)](https://huggingface.co/chengpingan/PIP-KAG-7B)
+[![HuggingFace](https://img.shields.io/badge/HuggingFace-CoConflictQA-important)](https://huggingface.co/datasets/chengpingan/CoConflictQA)
 
 If you find this work useful, please cite our paper and give us a shining star 🌟
 
