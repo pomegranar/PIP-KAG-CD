@@ -1,13 +1,5 @@
 # PIP-KAG: Mitigating Knowledge Conflicts in Knowledge-Augmented Generation via Parametric Pruning
 
-
-
-
-Source code for our paper: [PIP-KAG: Mitigating Knowledge Conflicts in Knowledge-Augmented Generation via Parametric Pruning](https://arxiv.org/pdf/2502.15543)
-
-Click the links below to explore our **papers**, **checkpoints**, and **datasets**:
-
-
 [![GitHub](https://img.shields.io/badge/GitHub-PIP--KAG-black?logo=github)](https://github.com/OpenBMB/PIP-KAG)
 [![arXiv](https://img.shields.io/badge/arXiv-2502.15543-B31B1B?logo=arxiv&logoColor=white)](https://arxiv.org/pdf/2502.15543)
 [![PIP-KAG](https://img.shields.io/badge/HuggingFace-PIP--KAG-yellow?logo=huggingface)](https://huggingface.co/papers/2502.15543)
@@ -15,11 +7,22 @@ Click the links below to explore our **papers**, **checkpoints**, and **datasets
 [![HuggingFace](https://img.shields.io/badge/HuggingFace-CoConflictQA-important)](https://huggingface.co/datasets/chengpingan/CoConflictQA)
 
 
+<p align="center">
 
-If you find this work useful, please cite our paper and give us a shining star 🌟
+• 🎯 [Introduction](#🎯-introduction) 
+• ⚙️ [Usage Instructions](#⚙️-usage-instructions)
+• 🔧 [Setup](#🔧-setup)
+<br>
+• ⚡ [PIP-KAG Pipeline](#⚡-pip-kag-pipeline) 
+• 📃 [Evaluation](#📃-evaluation) 
+• 📝 [Citation](#📝-citation)
+• 📨 [Contact](#📨-contact)
+
+</p>
 
 
-## 🎯 Overview
+
+## 🎯 Introduction
 We propose a ParametrIc Pruning-based Knowledge-Augmented Generation (PIP-KAG) approach, which prunes internal knowledge of LLMs and incorporates a plug-and-play adaptation module to help LLMs better leverage external sources. 
 
 Experimental results on CoConflictQA demonstrate that PIP-KAG significantly reduces knowledge conflicts and improves context fidelity. Notably, PIP-KAG reduces LLM's parameters by 13%, enhancing parameter efficiency in LLMs within the KAG framework.
@@ -38,7 +41,8 @@ Experimental results on CoConflictQA demonstrate that PIP-KAG significantly redu
 (4) Evaluate the Performance of PIP-KAG Models:
 - Assess the effectiveness of the PIP-KAG models.
 
-## 1️⃣ Setup
+## 🔧 Setup
+### Installation
 (1) Use `git clone` to download this project:
 ```
 git clone git@github.com:OpenBMB/PIP-KAG.git
@@ -62,7 +66,7 @@ cd src/transformers
 pip install -e .
 ```
 
-## 2️⃣ Download the model and adapter files:
+### Download the model and adapter files:
 The training data and testing data can be downloaded from [CoConflictQA](https://huggingface.co/datasets/chengpingan/PIP-KAG). After downloading, place the files into the data directory using the following structure:
 ```
 data/
@@ -77,7 +81,7 @@ data/
 Our trained model can be found in [`PIP-KAG-7B`](https://huggingface.co/chengpingan/PIP-KAG-7B).
 
 
-## 3️⃣ PIP-Uinstall & PIP-Install
+## ⚡ PIP-KAG Pipeline
 ### PIP-Uninstall
 After preparation, you can begin training the PIP-KAG model. The knowledge uninstallation process consists of two main steps:
 
@@ -110,7 +114,7 @@ cd scripts
 bash utils/merge_lora.sh
 ```
 
-## 4️⃣ Evaluating PIP-KAG
+## 📃 Evaluation
 You can evaluate the performance of PIP-KAG in two ways:
 
 (1) Follow the scripts provided above to test your reproduced model using the test data located in `/data/eval`.
@@ -124,7 +128,7 @@ bash Evaluation/evaluate_coconflictqa.sh
 ```
 
 ## 📝 Citation
-Please cite our paper if it's helpful to your work!
+If you find this work useful, please cite our paper and give us a shining star 🌟
 ```
 @misc{huang2025pipkagmitigatingknowledgeconflicts,
       title={PIP-KAG: Mitigating Knowledge Conflicts in Knowledge-Augmented Generation via Parametric Pruning}, 
