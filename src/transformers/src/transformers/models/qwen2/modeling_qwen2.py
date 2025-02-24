@@ -952,7 +952,7 @@ class Qwen2Model_pruning_ffn(Qwen2PreTrainedModel):
 
         # Initialize weights and apply final processing
         self.post_init()
-        print('正在使用Qwen2Model_pruning_ffn')
+        print('Using Qwen2Model_pruning_ffn')
 
     def get_input_embeddings(self):
         return self.embed_tokens
@@ -1200,7 +1200,7 @@ class Qwen2_pruning_ffnForCausalLM(Qwen2PreTrainedModel, GenerationMixin):
 
         # Initialize weights and apply final processing
         self.post_init()
-        print('正在使用 Qwen2_pruning_ffnForCausalLM')
+        print('Using Qwen2_pruning_ffnForCausalLM')
 
     def get_input_embeddings(self):
         return self.model.embed_tokens
@@ -1324,7 +1324,7 @@ class Qwen2_pruning_ffnForInputContrastive(Qwen2PreTrainedModel, GenerationMixin
 
         # Initialize weights and apply final processing
         self.post_init()
-        print('正在使用 Qwen2_pruning_ffnForInputContrastive')
+        print('Using Qwen2_pruning_ffnForInputContrastive')
 
     def get_input_embeddings(self):
         return self.model.embed_tokens
@@ -1475,7 +1475,6 @@ class Qwen2_pruning_ffnForInputContrastive(Qwen2PreTrainedModel, GenerationMixin
             cur_step_ratio = step / total_steps
 
             margin = (self.initial_margin + (self.final_margin - self.initial_margin) * cur_step_ratio) * raw_input_ids.shape[0]
-            # margin = 1
             contrastive_loss = torch.relu(rag_loss - raw_loss + margin)
             loss = alpha * contrastive_loss + (1-alpha) * rag_loss
 
@@ -1500,46 +1499,6 @@ class Qwen2_pruning_ffnForInputContrastive(Qwen2PreTrainedModel, GenerationMixin
             )
 
 
-        output_attentions = output_attentions if output_attentions is not None else self.config.output_attentions
-        output_hidden_states = (
-            output_hidden_states if output_hidden_states is not None else self.config.output_hidden_states
-        )
-        return_dict = return_dict if return_dict is not None else self.config.use_return_dict
-
-        # decoder outputs consists of (dec_features, layer_state, dec_hidden, dec_attn)
-        outputs = self.model(
-            input_ids=input_ids,
-            attention_mask=attention_mask,
-            position_ids=position_ids,
-            past_key_values=past_key_values,
-            inputs_embeds=inputs_embeds,
-            use_cache=use_cache,
-            output_attentions=output_attentions,
-            output_hidden_states=output_hidden_states,
-            return_dict=return_dict,
-            cache_position=cache_position,
-            **kwargs,
-        )
-
-        hidden_states = outputs[0]
-        # Only compute necessary logits, and do not upcast them to float if we are not computing the loss
-        logits = self.lm_head(hidden_states[:, -num_logits_to_keep:, :])
-
-        loss = None
-        if labels is not None:
-            loss = self.loss_function(logits=logits, labels=labels, vocab_size=self.config.vocab_size, **kwargs)
-
-        if not return_dict:
-            output = (logits,) + outputs[1:]
-            return (loss,) + output if loss is not None else output
-
-        return CausalLMOutputWithPast(
-            loss=loss,
-            logits=logits,
-            past_key_values=outputs.past_key_values,
-            hidden_states=outputs.hidden_states,
-            attentions=outputs.attentions,
-        )
 
 
 

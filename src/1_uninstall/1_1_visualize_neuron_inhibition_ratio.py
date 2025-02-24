@@ -16,14 +16,14 @@ parser = argparse.ArgumentParser(description='Knowledge uninstallation script')
 parser.add_argument('--in_file_path', type=str, help='Data for visualizing the neuron inhibition ratio.')
 parser.add_argument('--visualize_path', type=str, help='Path for visualizing the neuron inhibition ratio results.')
 parser.add_argument('--pretrained_model_path', type=str, help='Path to the pre-trained model.')
-parser.add_argument('--model_type', type=str, help='Type to the pre-trained model.')
+
 args = parser.parse_args()
 
 
 in_file_path = args.in_file_path
 visualize_path = args.visualize_path
 model_path = args.pretrained_model_path
-model_type = args.model_type
+
 
 print("Your settings are as follows:")
 print("=" * 40)
@@ -31,7 +31,6 @@ print("Command line arguments:")
 print(f"  - Input File Path (in_file_path): {args.in_file_path}")
 print(f"  - Visualization Path (visualize_path): {args.visualize_path}")
 print(f"  - Path to the Pre-trained Model (pretrained_model_path): {args.pretrained_model_path}")
-print(f"  - Model Type (model_type): {args.model_type}")
 print("=" * 40)
 
 
@@ -40,6 +39,7 @@ model.to(device)
 tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)
 num_layers = model.config.num_hidden_layers
 num_neurons = model.config.intermediate_size
+model_type = model.config.model_type
 
 
 global_data_idx = 0
@@ -106,18 +106,16 @@ def get_activate_mlp_forward(self):
 
 
 def find_output_start_idx(token_ids):
-    if 'llama32' in model_type:
-        sublist = [128000, 128006, 882, 128007, 271]    # <|start_header_id|>assistant<|end_header_id|>\n\n'
-    if 'llama3' in model_type: 
+
+    if model_type == 'llama':  # llama3 llama31 llama32
         sublist = [128006, 78191, 128007, 271] # <|start_header_id|>assistant<|end_header_id|>\n\n'
-    elif 'qwen25' in model_type:
+    elif model_type == 'qwen2':
         sublist = [151644, 77091, 198]
-    elif 'gemma2' in model_type:
+    elif model_type == 'gemma2':
         sublist = [106, 2516, 108]
-    elif 'minicpm3' in model_type:
+    elif model_type == 'minicpm3':
         sublist = [3060, 5]
-    elif 'llama31' in model_type:
-        sublist = [128000, 128006, 882, 128007, 271]
+
     start_indices = [i for i in range(len(token_ids) - len(sublist) + 1) if token_ids[i:i+len(sublist)] == sublist][-1]
 
     return start_indices + len(sublist)
@@ -202,9 +200,9 @@ def draw_neuron_inhibition_ratio(with_context_activations, without_context_activ
 
 
     ax2.plot(x_values, with_context_activations, marker='o', linestyle='-', 
-            color='#0000ff', label="w/ context", zorder=2)   # #6dabd4
+            color='#0000ff', label="w/ context", zorder=2)   
     ax2.plot(x_values, without_context_activations, marker='s', linestyle='--', 
-            color='#ff0000', label="w/o context", zorder=3)  # #f08080
+            color='#ff0000', label="w/o context", zorder=3)  
 
 
     ax2.set_ylabel("Neuron Activation Ratio", fontsize=22)
@@ -227,8 +225,8 @@ def draw_neuron_inhibition_ratio(with_context_activations, without_context_activ
     ax1.xaxis.grid(True, linestyle=':', linewidth=0.7, alpha=0.3)
 
 
-    ax2.legend(loc="upper center", bbox_to_anchor=(0.33, 1.18), fontsize=20, frameon=False, ncol=2,columnspacing=0.85)  # 左上角（折线图）
-    ax1.legend(loc="upper center", bbox_to_anchor=(0.7, 1.18), fontsize=20, frameon=False, ncol=2,columnspacing=0.85)  # 右上角（柱状图）
+    ax2.legend(loc="upper center", bbox_to_anchor=(0.33, 1.18), fontsize=20, frameon=False, ncol=2,columnspacing=0.85) 
+    ax1.legend(loc="upper center", bbox_to_anchor=(0.7, 1.18), fontsize=20, frameon=False, ncol=2,columnspacing=0.85) 
   
     plt.savefig(save_path, bbox_inches='tight', dpi=600)
     plt.show()

@@ -948,7 +948,6 @@ class LlamaDecoderLayer_wo_mlp(nn.Module):
         self.self_attn = LlamaAttention(config=config, layer_idx=layer_idx)
 
         self.input_layernorm = LlamaRMSNorm(config.hidden_size, eps=config.rms_norm_eps)
-        # self.post_attention_layernorm = LlamaRMSNorm(config.hidden_size, eps=config.rms_norm_eps)
         
     def forward(
         self,
@@ -990,10 +989,8 @@ class LlamaDecoderLayer_wo_attn(nn.Module):
         super().__init__()
         self.hidden_size = config.hidden_size
 
-        # self.self_attn = LlamaAttention(config=config, layer_idx=layer_idx)
-
         self.mlp = LlamaMLP(config)
-        # self.input_layernorm = LlamaRMSNorm(config.hidden_size, eps=config.rms_norm_eps)
+
         self.post_attention_layernorm = LlamaRMSNorm(config.hidden_size, eps=config.rms_norm_eps)
         
     def forward(
@@ -1044,12 +1041,7 @@ class LlamaDecoderLayer_wo_attn(nn.Module):
     "This is a modified LLaMA model, which may prune some FFN layers to reduce the internal memory usage of the LLM. And also this will outputting raw hidden-states withour any specific head on top.",
     LLAMA_START_DOCSTRING,
 )
-# class LlamaModel_pruning_ffn(LlamaModel):
-#     def __init__(self, config: LlamaConfig):
-#         super().__init__(config)
-#         self.layers = nn.ModuleList(
-#             [LlamaDecoderLayer(config, layer_idx) for layer_idx in range(config.full_layer_nums)] + [LlamaDecoderLayer_wo_mlp(config, layer_idx + config.full_layer_nums) for layer_idx in range(config.full_layer_nums, config.full_layer_nums+config.mlp_only_layer_nums )]
-#         )
+
 
 class LlamaModel_pruning_ffn(LlamaPreTrainedModel):
     """
@@ -1065,14 +1057,7 @@ class LlamaModel_pruning_ffn(LlamaPreTrainedModel):
         self.vocab_size = config.vocab_size
 
         self.embed_tokens = nn.Embedding(config.vocab_size, config.hidden_size, self.padding_idx)
-        # self.layers = nn.ModuleList(
-        #     [LlamaDecoderLayer(config, layer_idx) for layer_idx in range(config.num_hidden_layers)]
-        # )
-        # 从config.full_layer_nums开始，到config.full_layer_nums+config.mlp_only_layer_nums，不包含config.full_layer_nums
-        # self.layers = nn.ModuleList(
-        #     [LlamaDecoderLayer(config, layer_idx) for layer_idx in range(config.full_layer_nums)] + [LlamaDecoderLayer_wo_mlp(config, layer_idx + config.full_layer_nums) for layer_idx in range(config.full_layer_nums, config.full_layer_nums+config.mlp_only_layer_nums )]
-        # )
-        # 从config.ffn_start_layer开始，有config.ffn_layer_nums个只包含ffn的层，ffn_start_layer之前 & ffn_start_layer+ffn_layer_nums之后是正常的decoder层
+
         self.layers = nn.ModuleList(
             [LlamaDecoderLayer(config, layer_idx) for layer_idx in range(config.ffn_start_layer)] + [LlamaDecoderLayer_wo_mlp(config, layer_idx) for layer_idx in range(config.ffn_start_layer, config.ffn_start_layer+config.ffn_layer_nums )] + [LlamaDecoderLayer(config, layer_idx) for layer_idx in range(config.ffn_start_layer+config.ffn_layer_nums, config.num_hidden_layers)]
         )
@@ -1334,9 +1319,7 @@ class LlamaModel_pruning_attn(LlamaPreTrainedModel):
         self.vocab_size = config.vocab_size
 
         self.embed_tokens = nn.Embedding(config.vocab_size, config.hidden_size, self.padding_idx)
-        # self.layers = nn.ModuleList(
-        #     [LlamaDecoderLayer(config, layer_idx) for layer_idx in range(config.num_hidden_layers)]
-        # )
+
         self.layers = nn.ModuleList(
             [LlamaDecoderLayer(config, layer_idx) for layer_idx in range(config.ffn_start_layer)] + [LlamaDecoderLayer_wo_attn(config, layer_idx) for layer_idx in range(config.ffn_start_layer, config.ffn_start_layer+config.ffn_layer_nums )] + [LlamaDecoderLayer(config, layer_idx) for layer_idx in range(config.ffn_start_layer+config.ffn_layer_nums, config.num_hidden_layers)]
         )
@@ -1594,7 +1577,7 @@ class Llama_pruning_ffnForCausalLM(LlamaPreTrainedModel, GenerationMixin):
 
         # Initialize weights and apply final processing
         self.post_init()
-        print(f'正在使用Llama_pruning_ffnForCausalLM')
+        print(f'Using Llama_pruning_ffnForCausalLM')
 
     def get_input_embeddings(self):
         return self.model.embed_tokens
@@ -1716,7 +1699,7 @@ class Llama_pruning_attnForCausalLM(LlamaPreTrainedModel, GenerationMixin):
 
         # Initialize weights and apply final processing
         self.post_init()
-        print(f'正在使用Llama_pruning_attnForCausalLM')
+        print(f'Using Llama_pruning_attnForCausalLM')
 
     def get_input_embeddings(self):
         return self.model.embed_tokens
@@ -1841,7 +1824,7 @@ class LlamaForInputContrastive(LlamaPreTrainedModel, GenerationMixin):
 
         # Initialize weights and apply final processing
         self.post_init()
-        print(f'正在使用LlamaForInputContrastive')
+        print(f'Using LlamaForInputContrastive')
 
     def get_input_embeddings(self):
         return self.model.embed_tokens
@@ -1942,10 +1925,7 @@ class LlamaForInputContrastive(LlamaPreTrainedModel, GenerationMixin):
                 attentions=rag_outputs.attentions,
             )
         else:
-            # output_attentions = output_attentions if output_attentions is not None else self.config.output_attentions
-            # output_hidden_states = (
-            #     output_hidden_states if output_hidden_states is not None else self.config.output_hidden_states
-            # )
+
             return_dict = return_dict if return_dict is not None else self.config.use_return_dict
 
             # decoder outputs consists of (dec_features, layer_state, dec_hidden, dec_attn)
@@ -2137,10 +2117,7 @@ class Llama_pruning_ffnForInputContrastive(LlamaPreTrainedModel, GenerationMixin
                 attentions=rag_outputs.attentions,
             )
         else:
-            # output_attentions = output_attentions if output_attentions is not None else self.config.output_attentions
-            # output_hidden_states = (
-            #     output_hidden_states if output_hidden_states is not None else self.config.output_hidden_states
-            # )
+
             return_dict = return_dict if return_dict is not None else self.config.use_return_dict
 
             # decoder outputs consists of (dec_features, layer_state, dec_hidden, dec_attn)
@@ -2332,10 +2309,7 @@ class Llama_pruning_attnForInputContrastive(LlamaPreTrainedModel, GenerationMixi
                 attentions=rag_outputs.attentions,
             )
         else:
-            # output_attentions = output_attentions if output_attentions is not None else self.config.output_attentions
-            # output_hidden_states = (
-            #     output_hidden_states if output_hidden_states is not None else self.config.output_hidden_states
-            # )
+
             return_dict = return_dict if return_dict is not None else self.config.use_return_dict
 
             # decoder outputs consists of (dec_features, layer_state, dec_hidden, dec_attn)
