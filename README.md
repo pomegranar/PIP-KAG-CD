@@ -3,11 +3,10 @@
 
 
 
-Source code for our paper:
-
-[PIP-KAG: Mitigating Knowledge Conflicts in Knowledge-Augmented Generation via Parametric Pruning](https://arxiv.org/pdf/2502.15543)
+Source code for our paper: [PIP-KAG: Mitigating Knowledge Conflicts in Knowledge-Augmented Generation via Parametric Pruning](https://arxiv.org/pdf/2502.15543)
 
 Click the links below to view our papers, checkpoints, and published models:
+
 [![arxiv](https://img.shields.io/badge/arxiv-2502.15543-orange)](https://arxiv.org/pdf/2502.15543)
 [![HuggingFace](https://img.shields.io/badge/HuggingFace-PIP--KAG--7B-green)](https://huggingface.co/chengpingan/PIP-KAG-7B)
 
