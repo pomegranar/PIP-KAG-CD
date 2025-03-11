@@ -1,11 +1,12 @@
 # PIP-KAG: Mitigating Knowledge Conflicts in Knowledge-Augmented Generation via Parametric Pruning
 
+<p align="center">
 [![GitHub](https://img.shields.io/badge/GitHub-PIP--KAG-black?logo=github)](https://github.com/OpenBMB/PIP-KAG)
-[![arXiv](https://img.shields.io/badge/arXiv-2502.15543-B31B1B?logo=arxiv&logoColor=white)](https://arxiv.org/pdf/2502.15543)
+[![arXiv](https://img.shields.io/badge/Paper-PIP--KAG-B31B1B?logo=arxiv&logoColor=white)](https://arxiv.org/pdf/2502.15543)
 [![PIP-KAG](https://img.shields.io/badge/HuggingFace-PIP--KAG-yellow?logo=huggingface)](https://huggingface.co/papers/2502.15543)
-[![HuggingFace](https://img.shields.io/badge/HuggingFace-PIP--KAG--7B-yellowgreen)](https://huggingface.co/chengpingan/PIP-KAG-7B)
-[![HuggingFace](https://img.shields.io/badge/HuggingFace-CoConflictQA-important)](https://huggingface.co/datasets/chengpingan/CoConflictQA)
-
+[![HuggingFace](https://img.shields.io/badge/Model-PIP--KAG--7B-yellowgreen)](https://huggingface.co/chengpingan/PIP-KAG-7B)
+[![HuggingFace](https://img.shields.io/badge/Dataset-CoConflictQA-important)](https://huggingface.co/datasets/chengpingan/CoConflictQA)
+</p>
 
 <div align="center">
 <p align="center" dir="auto">
