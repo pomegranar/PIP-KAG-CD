@@ -1,12 +1,30 @@
 # PIP-KAG: Mitigating Knowledge Conflicts in Knowledge-Augmented Generation via Parametric Pruning
 
-<p align="center">
+<!-- <p align="center">
 [![GitHub](https://img.shields.io/badge/GitHub-PIP--KAG-black?logo=github)](https://github.com/OpenBMB/PIP-KAG)
 [![arXiv](https://img.shields.io/badge/Paper-PIP--KAG-B31B1B?logo=arxiv&logoColor=white)](https://arxiv.org/pdf/2502.15543)
 [![PIP-KAG](https://img.shields.io/badge/HuggingFace-PIP--KAG-yellow?logo=huggingface)](https://huggingface.co/papers/2502.15543)
 [![HuggingFace](https://img.shields.io/badge/Model-PIP--KAG--7B-yellowgreen)](https://huggingface.co/chengpingan/PIP-KAG-7B)
 [![HuggingFace](https://img.shields.io/badge/Dataset-CoConflictQA-important)](https://huggingface.co/datasets/chengpingan/CoConflictQA)
+</p> -->
+<p align="center">
+  <a href="https://github.com/OpenBMB/PIP-KAG" alt="GitHub">
+    <img src="https://img.shields.io/badge/GitHub-PIP--KAG-black?logo=github"/>
+  </a>
+  <a href="https://arxiv.org/pdf/2502.15543" alt="Paper">
+    <img src="https://img.shields.io/badge/Paper-PIP--KAG-B31B1B?logo=arxiv&logoColor=white"/>
+  </a>
+  <a href="https://huggingface.co/papers/2502.15543" alt="HuggingFace Paper">
+    <img src="https://img.shields.io/badge/HuggingFace-PIP--KAG-yellow?logo=huggingface"/>
+  </a>
+  <a href="https://huggingface.co/chengpingan/PIP-KAG-7B" alt="Model">
+    <img src="https://img.shields.io/badge/Model-PIP--KAG--7B-yellowgreen"/>
+  </a>
+  <a href="https://huggingface.co/datasets/chengpingan/CoConflictQA" alt="Dataset">
+    <img src="https://img.shields.io/badge/Dataset-CoConflictQA-important"/>
+  </a>
 </p>
+
 
 <div align="center">
 <p align="center" dir="auto">
