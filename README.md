@@ -15,13 +15,16 @@
     <img src="https://img.shields.io/badge/Paper-PIP--KAG-B31B1B?logo=arxiv&logoColor=white"/>
   </a>
   <a href="https://huggingface.co/papers/2502.15543" alt="HuggingFace Paper">
-    <img src="https://img.shields.io/badge/HuggingFace-PIP--KAG-yellow?logo=huggingface"/>
+    <img src="https://img.shields.io/badge/HF Space-PIP--KAG-yellow?logo=huggingface"/>
   </a>
   <a href="https://huggingface.co/chengpingan/PIP-KAG-7B" alt="Model">
     <img src="https://img.shields.io/badge/Model-PIP--KAG--7B-yellowgreen"/>
   </a>
   <a href="https://huggingface.co/datasets/chengpingan/CoConflictQA" alt="Dataset">
-    <img src="https://img.shields.io/badge/Dataset-CoConflictQA-important"/>
+    <img src="https://img.shields.io/badge/Benchmark-CoConflictQA-important"/>
+  </a>
+  <a href="https://huggingface.co/datasets/chengpingan/PIP-KAG" alt="Dataset">
+    <img src="https://img.shields.io/badge/Training Set-CoConflictQA-important"/>
   </a>
 </p>
 
