@@ -1,4 +1,7 @@
-![pip](assets/pip.png){width=300px}
+<div style="text-align: center;">
+    <img src="assets/pip.png" alt="PIP-KAG Logo" width="300"/>
+</div>
+
 
 # PIP-KAG: Mitigating Knowledge Conflicts in Knowledge-Augmented Generation via Parametric Pruning
 
