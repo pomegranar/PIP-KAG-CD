@@ -1,6 +1,6 @@
-<div style="text-align: center;">
-    <img src="assets/pip.png" alt="PIP-KAG Logo" width="300"/>
-</div>
+<p align="center">
+    <img src="assets/pip.png" alt="PIP-KAG Logo" width="150"/>
+</p>
 
 
 # PIP-KAG: Mitigating Knowledge Conflicts in Knowledge-Augmented Generation via Parametric Pruning
