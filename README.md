@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="assets/pip.png" alt="PIP-KAG Logo" width="150"/>
+    <img src="assets/pip.png" alt="PIP-KAG Logo" width="100"/>
 </p>
 
 
