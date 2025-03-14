@@ -1,4 +1,5 @@
-![pip](assets/pip.png)
+![pip](assets/pip.png){width=300px}
+
 # PIP-KAG: Mitigating Knowledge Conflicts in Knowledge-Augmented Generation via Parametric Pruning
 
 <!-- <p align="center">
