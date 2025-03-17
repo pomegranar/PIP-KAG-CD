@@ -37,6 +37,7 @@
 <div align="center">
 <p align="center" dir="auto">
 
+• 🛫 [Quickstart](#-Quickstart) 
 • 🎯 [Introduction](#-introduction) 
 • ⚙️ [Usage Instructions](#%EF%B8%8F-usage-instructions)
 • 🔧 [Setup](#-setup)
