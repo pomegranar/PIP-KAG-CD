@@ -212,7 +212,8 @@ def main():
     if args.model_type == 'llama3' or args.model_type == 'llama32':
         model = AutoModelForCausalLM.from_pretrained(model_name, device_map="auto", low_cpu_mem_usage = True, torch_dtype=torch.float16, trust_remote_code=True)
     elif args.model_type == 'llama3_pruning_ffn' or args.model_type == 'llama32_pruning_ffn':
-        model = Llama_pruning_ffnForCausalLM.from_pretrained(model_name, device_map="auto", low_cpu_mem_usage = True, torch_dtype=torch.float16, trust_remote_code=True)    model.cuda()
+        model = Llama_pruning_ffnForCausalLM.from_pretrained(model_name, device_map="auto", low_cpu_mem_usage = True, torch_dtype=torch.float16, trust_remote_code=True)    
+    model.cuda()
     step = 0
     input_ids_list = []
     for d in data:
