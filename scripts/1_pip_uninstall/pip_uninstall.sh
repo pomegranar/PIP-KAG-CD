@@ -1,4 +1,4 @@
-cd ../src/1_uninstall
+cd ../../src/1_uninstall
 
 python3 1_2_pip_uninstall.py \
     --pruning_start_layer # Starting Layer for Pruning  \

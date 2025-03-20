@@ -1,4 +1,4 @@
-cd /src/2_install
+cd ../../src/2_install
 
 CUDA_VISIBLE_DEVICES=0 python3 pip_install.py \
     --model_name_or_path $path of pruned model$ \

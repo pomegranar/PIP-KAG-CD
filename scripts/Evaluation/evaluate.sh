@@ -1,10 +1,10 @@
-cd /src/3_evaluate/
+cd ../../src/3_evaluate/
 
 to_ex_path=evaluation_confiqa_vllm_acc.py
-eval_files=/data/CoConflictQA
+eval_files=../../data/CoConflictQA
 
-to_eval_model=/home/liuzhenghao/hpc/project/lc_rag/experiments/sampled_3w2_from_train/ex/23_6_e3_margin1/checkpoint-2100/merged
-output_dir=/home/liuzhenghao/hpc/project/lc_rag/experiments/sampled_3w2_from_train/ex/eval_res/23_6_e3_margin1/test_
+to_eval_model= $Path to the pre-trained model to be evaluated.
+output_dir= $Path of the result.
 device=0
 model_type=llama3_pruning_ffn   # llama3_pruning_ffn llama3
 
