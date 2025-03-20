@@ -60,7 +60,7 @@ def load_model_and_tokenizer(model_args, training_args):
         elif training_args.model_type == 'llama3' or training_args.model_type == 'qwen2':
             model = AutoModelForCausalLM.from_pretrained(
                 model_args.model_name_or_path,
-                torch_dtype=torch.bfloat16,  # 使用 BF16
+                torch_dtype=torch.bfloat16,  #  BF16
                 trust_remote_code=True
                     )
         else:
@@ -70,7 +70,7 @@ def load_model_and_tokenizer(model_args, training_args):
         if training_args.model_type == 'llama3_input_contrastive' or training_args.model_type == 'llama3_parameter_pruning_input_contrastive':
             model = LlamaForInputContrastive.from_pretrained(
                 model_args.model_name_or_path,
-                torch_dtype=torch.bfloat16,  # 使用 BF16
+                torch_dtype=torch.bfloat16,  #  BF16
                 initial_margin = training_args.initial_margin,
                     final_margin = training_args.final_margin,
                     trust_remote_code=True
@@ -79,7 +79,7 @@ def load_model_and_tokenizer(model_args, training_args):
             # model = AutoModelForCausalLM.from_pretrained(args.model_name_or_path)
             model = Llama_pruning_ffnForInputContrastive.from_pretrained(
                     model_args.model_name_or_path,
-                    torch_dtype=torch.bfloat16,  # 使用 BF16
+                    torch_dtype=torch.bfloat16,  #  BF16
                     initial_margin = training_args.initial_margin,
                     final_margin = training_args.final_margin,
                     trust_remote_code=True
@@ -88,7 +88,7 @@ def load_model_and_tokenizer(model_args, training_args):
             # model = AutoModelForCausalLM.from_pretrained(args.model_name_or_path)
             model = Qwen2_pruning_ffnForInputContrastive.from_pretrained(
                     model_args.model_name_or_path,
-                    torch_dtype=torch.bfloat16,  # 使用 BF16
+                    torch_dtype=torch.bfloat16,  #  BF16
                     initial_margin = training_args.initial_margin,
                     final_margin = training_args.final_margin,
                     trust_remote_code=True
@@ -97,7 +97,7 @@ def load_model_and_tokenizer(model_args, training_args):
             # model = AutoModelForCausalLM.from_pretrained(args.model_name_or_path)
             model = Llama_pruning_attnForInputContrastive.from_pretrained(
                     model_args.model_name_or_path,
-                    torch_dtype=torch.bfloat16,  # 使用 BF16
+                    torch_dtype=torch.bfloat16,  #  BF16
                     initial_margin = training_args.initial_margin,
                     final_margin = training_args.final_margin,
                     trust_remote_code=True
@@ -110,7 +110,6 @@ def load_model_and_tokenizer(model_args, training_args):
     if training_args.use_lora == False:
         peft_config = None
     elif training_args.use_lora == True:
-        # 找到所有需要插入adapter的全连接层
         # target_modules = find_all_linear_names(model, training_args.train_mode)
         target_modules = ['q_proj', 'v_proj', 'k_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj']
         peft_config = LoraConfig(
@@ -124,7 +123,7 @@ def load_model_and_tokenizer(model_args, training_args):
         )
         # import pdb; pdb.set_trace()
         model = get_peft_model(model, peft_config)
-        model.enable_input_require_grads()  # 这行对 LoRA 很重要
+        model.enable_input_require_grads()  
         print(f'memory footprint of model: {model.get_memory_footprint() / (1024 * 1024 * 1024)} GB')
         model.print_trainable_parameters()
     else:

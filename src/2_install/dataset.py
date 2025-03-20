@@ -36,7 +36,6 @@ class SFTDataset(Dataset):
         human = self.user_format.format(content=data['rag_input'])
         assistant = self.assistant_format.format(content=data['output'])
 
-        # llama3没有system
         input_tokens = self.tokenizer.encode(human, add_special_tokens=False)
         output_tokens = self.tokenizer.encode(assistant, add_special_tokens=False)
 
@@ -55,7 +54,6 @@ class SFTDataset(Dataset):
             'labels': target_mask,
         }
 
-        # import pdb; pdb.set_trace()
         return inputs
     
 
@@ -66,18 +64,14 @@ class SFTDataCollator:
         self.pad_token_id = tokenizer.pad_token_id
 
     def __call__(self, batch: List[Dict[str, Any]]) -> Dict[str, Any]:
-        # 找出batch中的最大长度
         lengths = [len(x['input_ids']) for x in batch if x['input_ids'] is not None]
-        # 取出batch中的最大长度，如果超过max_seq_length，则取max_seq_length
         batch_max_len = min(max(lengths), self.max_seq_length)
-        # batch_max_len = self.max_seq_length
 
         input_ids_batch, attention_mask_batch, target_mask_batch = [], [], []
         # truncate and padding
         for x in batch:
             input_ids = x['input_ids']
             attention_mask = x['attention_mask']
-            # import pdb; pdb.set_trace()
             target_mask = x['labels']
             
             if input_ids is None:
@@ -97,7 +91,6 @@ class SFTDataCollator:
             attention_mask_batch.append(attention_mask)
             target_mask_batch.append(target_mask)
 
-        # 将list转换为tensor，得到最终的的模型输入
         input_ids_batch = torch.tensor(input_ids_batch, dtype=torch.long)
         attention_mask_batch = torch.tensor(attention_mask_batch, dtype=torch.long)
         target_mask_batch = torch.tensor(target_mask_batch, dtype=torch.long)
@@ -133,20 +126,13 @@ class InputContravasiveDataset(Dataset):
         return len(self.dataset)
     
     def __getitem__(self, idx):
-        # 每条数据拼接格式为：f"<|start_header_id|>{message['role']}<|end_header_id|>\n\n{message['content'].strip()}<|eot_id|>"
-        # 示例
+        # f"<|start_header_id|>{message['role']}<|end_header_id|>\n\n{message['content'].strip()}<|eot_id|>"
         """
         <|begin_of_text|><|start_header_id|>user<|end_header_id|>
 
-        你好<|eot_id|>"""
+        hi<|eot_id|>"""
         data = self.dataset[idx]
         rag_input_ids, raw_input_ids, rag_labels, raw_labels = [], [], [], []
-        # import pdb; pdb.set_trace()
-
-        # rag_human = data['rag_input']
-        # rag_assistant = data['output']
-        # raw_human = data['raw_input']
-        # raw_assistant = data['output']
 
         rag_human  = self.user_format.format(content=data['rag_input'])
         rag_assistant = self.assistant_format.format(content=data['output'])
@@ -228,8 +214,7 @@ class InputContravasiveCollator:
         rag_target_mask_batch = torch.tensor(rag_target_mask_batch, dtype=torch.long)
         
         rag_labels = torch.where(rag_target_mask_batch == 1, rag_input_ids_batch, -100)
-        
-        # 处理raw部分
+    
         raw_max_lengths = [len(x['input_ids']) for x in raw_inputs if x['input_ids'] is not None]
         raw_batch_max_len = min(max(raw_max_lengths), self.model_max_length)
 
@@ -257,7 +242,6 @@ class InputContravasiveCollator:
             raw_attention_mask_batch.append(attention_mask)
             raw_target_mask_batch.append(target_mask)
 
-        # 将list转换为tensor，得到最终的的模型输入
         raw_input_ids_batch = torch.tensor(raw_input_ids_batch, dtype=torch.long)
         raw_attention_mask_batch = torch.tensor(raw_attention_mask_batch, dtype=torch.long)
         raw_target_mask_batch = torch.tensor(raw_target_mask_batch, dtype=torch.long)
@@ -294,20 +278,15 @@ class BothContravasiveDataset(Dataset):
         return len(self.dataset)
     
     def __getitem__(self, idx):
-        # 每条数据拼接格式为：f"<|start_header_id|>{message['role']}<|end_header_id|>\n\n{message['content'].strip()}<|eot_id|>"
-        # 示例
+        # f"<|start_header_id|>{message['role']}<|end_header_id|>\n\n{message['content'].strip()}<|eot_id|>"
+
         """
         <|begin_of_text|><|start_header_id|>user<|end_header_id|>
 
-        你好<|eot_id|>"""
+        hi<|eot_id|>"""
         data = self.dataset[idx]
         rag_input_ids, raw_input_ids, rag_labels, raw_labels = [], [], [], []
-        # import pdb; pdb.set_trace()
 
-        # rag_human = data['rag_input']
-        # rag_assistant = data['output']
-        # raw_human = data['raw_input']
-        # raw_assistant = data['output']
 
         rag_human  = self.user_format.format(content=data['rag_input'])
         rag_assistant = self.assistant_format.format(content=data['rag_output'])
@@ -389,8 +368,7 @@ class BothContravasiveCollator:
         rag_target_mask_batch = torch.tensor(rag_target_mask_batch, dtype=torch.long)
         
         rag_labels = torch.where(rag_target_mask_batch == 1, rag_input_ids_batch, -100)
-        
-        # 处理raw部分
+
         raw_max_lengths = [len(x['input_ids']) for x in raw_inputs if x['input_ids'] is not None]
         raw_batch_max_len = min(max(raw_max_lengths), self.model_max_length)
 
@@ -418,7 +396,6 @@ class BothContravasiveCollator:
             raw_attention_mask_batch.append(attention_mask)
             raw_target_mask_batch.append(target_mask)
 
-        # 将list转换为tensor，得到最终的的模型输入
         raw_input_ids_batch = torch.tensor(raw_input_ids_batch, dtype=torch.long)
         raw_attention_mask_batch = torch.tensor(raw_attention_mask_batch, dtype=torch.long)
         raw_target_mask_batch = torch.tensor(raw_target_mask_batch, dtype=torch.long)

@@ -87,7 +87,6 @@ def get_activate_mlp_forward(self):
                 GLOBAL_MIN_ACTIVATE[GLOBAL_LAYER_FLAG] = (actmean > 0).sum()
                 GLOBAL_AVG_ACTIVATE[GLOBAL_LAYER_FLAG] = (actmean > 0).sum()
             else:
-                # 数据集上取或
                 GLOBAL_ACTIVATION_MATRIX_TOTAL[GLOBAL_LAYER_FLAG] = (actmean > 0).squeeze().squeeze() | GLOBAL_ACTIVATION_MATRIX_TOTAL[GLOBAL_LAYER_FLAG]
                 GLOBAL_ACTIVATION_MATRIX_COMMON[GLOBAL_LAYER_FLAG] = (actmean > 0).squeeze().squeeze() & GLOBAL_ACTIVATION_MATRIX_COMMON[GLOBAL_LAYER_FLAG]
                 

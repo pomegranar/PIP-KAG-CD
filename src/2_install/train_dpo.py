@@ -23,20 +23,16 @@ from peft import PeftConfig, PeftModel
 
 @dataclass
 class ModelArguments:
-    model_name_or_path: Optional[str] = field(default="/data3/yaosijia/models/Meta-Llama-3-8B-Instruct")
+    model_name_or_path: Optional[str] = field(default="../models/Meta-Llama-3-8B-Instruct")
     use_template: bool = field(default=True)
 
 
 @dataclass
 class DataArguments:
     train_data_path: str = field(
-        default="/data3/yaosijia/Dataset/MS_MARCO/train/llama-gen/query2cot/dpo-data-sep/train_data.json",
+        default="../train_data.json",
         metadata={"help": "Path to the training data."},
     )
-    # eval_data_path: str = field(
-    #     default="/data3/yaosijia/Dataset/MS_MARCO/train/llama-gen/query2cot/dpo-data-sep/dev_data.json",
-    #     metadata={"help": "Path to the test data."},
-    # )
     
     max_length: int = field(default=1024,metadata={"help":"Maximum all sequence length."},)
     max_prompt_length: int = field(default=768,metadata={"help":"Maximum prompt sequence length."},)
@@ -49,13 +45,13 @@ class TrainingArguments(transformers.TrainingArguments):
     load_lora_model : bool = field(default=True)
 
     use_lora: bool = field(default=True)
-    output_dir : str = field(default="/data3/yaosijia/DPO-hyde/dpo-llama3/dpo-new")
+    output_dir : str = field(default="../dpo-new")
     save_steps : int = field(default=100)
     eval_steps : int = field(default=100)
     per_device_train_batch_size: int = field(default=1)
     evaluation_strategy: str = field(default='steps')
     logging_steps : int = field(default=10)
-    logging_dir : str = field(default="/data3/yaosijia/DPO-hyde/dpo-llama3/logs")
+    logging_dir : str = field(default="../logs")
     bf16 : bool = field(default=True)
     learning_rate: float = field(default=1e-5, metadata={"help": "The initial learning rate for AdamW."})
     gradient_accumulation_steps: int = field(
@@ -154,24 +150,6 @@ if __name__ == "__main__":
         load_lora_model =training_args.load_lora_model
     )
 
-    # model_ref, _ = load_model_and_tokenizer(
-    #     model_path=model_args.model_name_or_path,
-    #     use_lora=training_args.use_lora,
-    #     bf16=training_args.bf16,
-    #     fp16=training_args.fp16,
-    #     load_lora_model =training_args.load_lora_model
-    # )
-
-    # train_dataset = SupervisedDataset(
-    #     data_path=data_args.train_data_path,
-    #     tokenizer=tokenizer,
-    #     model_max_length=training_args.model_max_length,
-    # )
-    # eval_dataset = SupervisedDataset(
-    #     data_path=data_args.eval_data_path,
-    #     tokenizer=tokenizer,
-    #     model_max_length=training_args.model_max_length,
-    # )
     
     partial_preprocess = partial(preprocessing,args=data_args,tokenizer=tokenizer)
 
@@ -211,7 +189,7 @@ if __name__ == "__main__":
         tokenizer=tokenizer,
 
     )
-    # dpo_trainer.ref_model = Accelerator().prepare(dpo_trainer.ref_model)
+
     dpo_trainer.train()
     dpo_trainer.save_model()
 

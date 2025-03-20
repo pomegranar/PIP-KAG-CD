@@ -14,7 +14,6 @@ class SNIPCallback(TrainerCallback):
                 param.data *= self.masks[cur_name].to(param.device)
 
     def on_train_begin(self, args, state, control, model=None, **kwargs):
-        # 在训练开始前计算掩码
         print("Calculating SNIP masks...")
         self.apply_masks(model)
         print("SNIP masks applied!")
@@ -33,25 +32,22 @@ class SNIPCallback(TrainerCallback):
         
         mask_sum = 0
         for mask in self.masks.values():
-            mask = mask.float()  # 转换为 float32
+            mask = mask.float()  #  float32
             mask_sum += mask.sum().item()
         mask_num = mask_sum / 1000000000
-        print(f'当前mask的总规模为: {mask_num}')
 
     def on_step_end(self, args, state, control, model=None, **kwargs):
-        # 在每个优化步骤后确保掩码生效
+
         print("SNIP masks applied!")
         if model is None:
             raise ValueError("Model is not provided to SNIPCallback.")
-        self.apply_masks(model)  # 确保优化后权重符合掩码约束
+        self.apply_masks(model)  
 
 
 class InputContrastiveTrainer(Trainer):
 
     def compute_loss(self, model, inputs, return_outputs=False, num_items_in_batch=None):
-        """
-        重写 compute_loss 方法以支持额外的 metrics 记录
-        """
+
         if (self.label_smoother is not None or self.compute_loss_func is not None) and "labels" in inputs:
             labels = inputs.pop("labels")
         else:
@@ -72,8 +68,6 @@ class InputContrastiveTrainer(Trainer):
         # Save past state if it exists
         if self.args.past_index >= 0:
             self._past = outputs[self.args.past_index]
-
-        # 处理 loss 计算
         if labels is not None:
             unwrapped_model = self.accelerator.unwrap_model(model)
             if _is_peft_model(unwrapped_model):
@@ -95,19 +89,13 @@ class InputContrastiveTrainer(Trainer):
                 )
             loss = outputs["loss"] if isinstance(outputs, dict) else outputs[0]
 
-        # 记录额外的指标
-        # if hasattr(outputs, 'metrics'):
-        #     for metric_name, metric_value in outputs.metrics.items():
-        #         self.log({metric_name: metric_value.mean().item()})
         if hasattr(outputs, 'metrics'):
-            # 创建一个包含所有指标的字典
             combined_metrics = {}
             for metric_name, metric_value in outputs.metrics.items():
                 if metric_name == 'margin':
                     combined_metrics[metric_name] = metric_value
                 else:
                     combined_metrics[metric_name] = metric_value.mean().item()
-            # 一次性记录所有指标
             self.log(combined_metrics)
         if self.args.average_tokens_across_devices and self.model_accepts_loss_kwargs:
             loss *= self.accelerator.num_processes

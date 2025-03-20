@@ -33,12 +33,10 @@ def main():
         train_collator = SFTDataCollator(tokenizer, data_args.max_len)
     elif training_args.train_mode == 'input_contrastive':
         logger.info('######## input_contrastive training Dataset & collator ########')
-        # print('######## input_contrastive training Dataset & collator ########')
         train_dataset = InputContravasiveDataset(data_args.train_file, tokenizer, training_args.model_type, data_args.max_len)
         train_collator = InputContravasiveCollator(tokenizer, data_args.max_len)
     elif training_args.train_mode == 'both_contrastive':
         logger.info('######## both_contrastive training Dataset & collator ########')
-        # print('######## input_contrastive training Dataset & collator ########')
         train_dataset = BothContravasiveDataset(data_args.train_file, tokenizer, training_args.model_type, data_args.max_len)
         train_collator = BothContravasiveCollator(tokenizer, data_args.max_len)
     else:
@@ -55,7 +53,7 @@ def main():
         )
     elif training_args.train_mode == 'input_contrastive' or training_args.train_mode == 'both_contrastive':
         if training_args.model_type == 'llama3_parameter_pruning_input_contrastive':
-            logger.info('######## 训练parameter level model ########')
+            logger.info('######## training parameter level model ########')
             logger.info(f'######## mask path: {training_args.mask_path} ########')
             masks = torch.load(training_args.mask_path) 
             trainer = InputContrastiveTrainer(
