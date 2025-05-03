@@ -28,9 +28,6 @@
   <a href="https://huggingface.co/datasets/chengpingan/CoConflictQA" alt="Dataset">
     <img src="https://img.shields.io/badge/Benchmark-CoConflictQA-important"/>
   </a>
-  <a href="https://huggingface.co/datasets/chengpingan/PIP-KAG" alt="Dataset">
-    <img src="https://img.shields.io/badge/Training Set-CoConflictQA-important"/>
-  </a>
 </p>
 
 
@@ -124,15 +121,12 @@ pip install -e .
 ```
 
 ### Download the model and adapter files:
-The training data and testing data can be downloaded from [CoConflictQA](https://huggingface.co/datasets/chengpingan/PIP-KAG). After downloading, place the files into the data directory using the following structure:
+The   testing data can be downloaded from [CoConflictQA]([https://huggingface.co/datasets/chengpingan/PIP-KAG](https://huggingface.co/datasets/chengpingan/CoConflictQA)). After downloading, place the files into the data directory using the following structure:
 ```
-data/
-├── train/
-│   └── Training.jsonl          # Training data
-└── test/
-    ├── hotpotq_kc.jsonl     
-    ├── NaturalQuestionsShort_kc.jsonl 
-    ├── NewsQA_kc.jsonl        
+test/
+├── hotpotq_kc.jsonl     
+├── NaturalQuestionsShort_kc.jsonl 
+├── NewsQA_kc.jsonl        
     ...
 ```
 Our trained model can be found in [`PIP-KAG-7B`](https://huggingface.co/chengpingan/PIP-KAG-7B).
