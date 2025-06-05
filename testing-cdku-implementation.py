@@ -2,9 +2,10 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 
 context = "DKU stands for Duke Kunshan University, a Sino-American university built in collaboration between Duke University and Wuhan University."
 
-question = "What does DKU stand for?"
+question = "What is the language of instruction at DKU?"
 
 models_to_try = ['chengpingan/PIP-KAG-7B', 'Models/llama3-8b-instruct']
+
 
 def ask_many_times(models, iterations):
     for model_path in models: 
