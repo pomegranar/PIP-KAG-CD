@@ -1,0 +1,29 @@
+{
+    "added": [
+        "dku_website/ugstudies.dukekunshan.edu.cn/majors/computation-and-design-with-tracks-in-/computer-science-digital-media-and-social-policy-2/index.html",
+        "dku_website/ugstudies.dukekunshan.edu.cn/majors/political-economy-with-track/s-in-economics-political-science-and-public-policy/index.html",
+        "dku_website/ugstudies.dukekunshan.edu.cn/majors/mate/rials-science-with-tracks-in-chemistry-and-physics/index.html",
+        "dku_website/ugstudies.dukekunshan.edu.cn/majors/data-science/index.html",
+        "dku_website/ugstudies.dukekunshan.edu.cn/majors/glob/al-health-with-tracks-in-biology-and-public-policy/index.html",
+        "dku_website/ugstudies.dukekunshan.edu.cn/majors/applied-mathematics-and-computational-scienc/es-with-tracks-in-computer-science-and-mathematics/index.html",
+        "dku_website/ugstudies.dukekunshan.edu.cn/majors/molecular-b/ioscience-with-tracks-in-biogeochemistry-biophysic/s-cell-and-molecular-biology-genetics-and-genomics/index.html",
+        "dku_website/ugstudies.dukekunshan.edu.cn/majors/global-china-studies-with-tracks-in-chine/se-history-political-science-and-religious-studies/index.html",
+        "dku_website/ugstudies.dukekunshan.edu.cn/majors/behavioral-/science-with-tracks-in-psychology-and-neuroscience/index.html",
+        "dku_website/ugstudies.dukekunshan.edu.cn/majors/arts-media-major-with-tracks-in-arts-and-media/index.html",
+        "dku_website/ugstudies.dukekunshan.edu.cn/majors/us-studies-with-tracks-in-american-history-ameri/can-literature-political-science-and-public-policy/index.html",
+        "dku_website/ugstudies.dukekunshan.edu.cn/majors/global/-cultural-studies-with-tracks-in-creative-writing-/and-translation-world-history-and-world-literature/index.html",
+        "dku_website/ugstudies.dukekunshan.edu.cn/majors/ethics-and-lead/ership-with-tracks-in-philosophy-and-public-policy/index.html",
+        "dku_website/ugstudies.dukekunshan.edu.cn/academics/majors/index.html",
+        "dku_website/ugstudies.dukekunshan.edu.cn/majors/environmental-science-with-tracks-in-b/iogeochemistry-biology-chemistry-and-public-policy/index.html",
+        "dku_website/ugstudies.dukekunshan.edu.cn/majors/computation-and-design-with-tracks-i/n-computer-science-digital-media-and-social-policy/index.html",
+        "dku_website/ugstudies.dukekunshan.edu.cn/majors/institutions-and-governance-with-track/s-in-economics-political-science-and-public-policy/index.html"
+    ],
+    "removed": [
+        "dku_website/ugstudies.dukekunshan.edu.cn/majors/index.html"
+    ],
+    "modified": [
+        "parsed.pkl",
+        "data_state.json",
+        "changed_data.json"
+    ]
+}

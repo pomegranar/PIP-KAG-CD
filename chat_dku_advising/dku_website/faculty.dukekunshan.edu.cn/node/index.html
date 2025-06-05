@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script type="text/javascript" data-toolbar-anti-flicker-loading>(function() {
+  const toolbarState = sessionStorage.getItem('Drupal.toolbar.toolbarState')
+    ? JSON.parse(sessionStorage.getItem('Drupal.toolbar.toolbarState'))
+    : false;
+  // These are classes that toolbar typically adds to <body>, but this code
+  // executes before the first paint, when <body> is not yet present. The
+  // classes are added to <html> so styling immediately reflects the current
+  // toolbar state. The classes are removed after the toolbar completes
+  // initialization.
+  const classesToAdd = ['toolbar-loading', 'toolbar-anti-flicker'];
+  if (toolbarState) {
+    const {
+      orientation,
+      hasActiveTab,
+      isFixed,
+      activeTray,
+      activeTabId,
+      isOriented,
+      userButtonMinWidth
+    } = toolbarState;
+
+    classesToAdd.push(
+      orientation ? `toolbar-` + orientation + `` : 'toolbar-horizontal',
+    );
+    if (hasActiveTab !== false) {
+      classesToAdd.push('toolbar-tray-open');
+    }
+    if (isFixed) {
+      classesToAdd.push('toolbar-fixed');
+    }
+    if (isOriented) {
+      classesToAdd.push('toolbar-oriented');
+    }
+
+    if (activeTray) {
+      // These styles are added so the active tab/tray styles are present
+      // immediately instead of "flickering" on as the toolbar initializes. In
+      // instances where a tray is lazy loaded, these styles facilitate the
+      // lazy loaded tray appearing gracefully and without reflow.
+      const styleContent = `
+      .toolbar-loading #` + activeTabId + ` {
+        background-image: linear-gradient(rgba(255, 255, 255, 0.25) 20%, transparent 200%);
+      }
+      .toolbar-loading #` + activeTabId + `-tray {
+        display: block; box-shadow: -1px 0 5px 2px rgb(0 0 0 / 33%);
+        border-right: 1px solid #aaa; background-color: #f5f5f5;
+        z-index: 0;
+      }
+      .toolbar-loading.toolbar-vertical.toolbar-tray-open #` + activeTabId + `-tray {
+        width: 15rem; height: 100vh;
+      }
+     .toolbar-loading.toolbar-horizontal :not(#` + activeTray + `) > .toolbar-lining {opacity: 0}`;
+
+      const style = document.createElement('style');
+      style.textContent = styleContent;
+      style.setAttribute('data-toolbar-anti-flicker-loading', true);
+      document.querySelector('head').appendChild(style);
+
+      if (userButtonMinWidth) {
+        const userButtonStyle = document.createElement('style');
+        userButtonStyle.textContent = `#toolbar-item-user {min-width: ` + userButtonMinWidth +`px;}`
+        document.querySelector('head').appendChild(userButtonStyle);
+      }
+    }
+  }
+  document.querySelector('html').classList.add(...classesToAdd);
+})();</script>
+<link rel="icon" href="/sites/default/files/dku_faviocn_good-150x150_0.png" type="image/png" />
+<link rel="alternate" type="application/rss+xml" title="" href="https://faculty.dukekunshan.edu.cn/rss.xml" />
+
+    <title>DKU Faculty</title>
+    <link rel="stylesheet" media="all" href="/core/modules/system/css/components/ajax-progress.module.css?snllb1" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/align.module.css?snllb1" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/autocomplete-loading.module.css?snllb1" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/fieldgroup.module.css?snllb1" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/container-inline.module.css?snllb1" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/clearfix.module.css?snllb1" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/details.module.css?snllb1" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/hidden.module.css?snllb1" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/item-list.module.css?snllb1" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/js.module.css?snllb1" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/nowrap.module.css?snllb1" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/position-container.module.css?snllb1" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/progress.module.css?snllb1" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/reset-appearance.module.css?snllb1" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/resize.module.css?snllb1" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/sticky-header.module.css?snllb1" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/system-status-counter.css?snllb1" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/system-status-report-counters.css?snllb1" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/system-status-report-general-info.css?snllb1" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/tabledrag.module.css?snllb1" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/tablesort.module.css?snllb1" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/tree-child.module.css?snllb1" />
+<link rel="stylesheet" media="all" href="/core/modules/views/css/views.module.css?snllb1" />
+<link rel="stylesheet" media="all" href="/core/misc/dropbutton/dropbutton.css?snllb1" />
+<link rel="stylesheet" media="all" href="https://faculty.dukekunshan.edu.cn/libraries/fontawesome/css/all.css" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/w3-css/w3.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/w3-css/w3css-extended-classes.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/base/base.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/w3-css/w3css-color-libraries-camouflage.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/w3-css/w3css-color-libraries-european-signal.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/w3-css/w3css-color-libraries-fashion.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/w3-css/w3css-color-libraries-flat-ui.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/w3-css/w3css-color-libraries-food.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/w3-css/w3css-color-libraries-ios.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/w3-css/w3css-color-libraries-metro-ui.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/w3-css/w3css-color-libraries-us-highway.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/w3-css/w3css-color-libraries-us-safety.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/w3-css/w3css-color-libraries-vivid.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/w3-css/w3css-color-libraries-win8.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/fonts/google-font-roboto.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/fonts/css/d8w3css-roboto.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/layout/layout-regions.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/layout/layout-width.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/components/system-messages.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/components/forms.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/components/breadcrumb.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/components/system-tabs.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/components/maintenance-page.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/components/system-admin.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/components/w3css-tables.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/components/global-menu.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/components/v-menu.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/components/site-branding.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/components/user-menu.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/components/user-login.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/components/footer-menu.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/components/default-node.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/components/page-title.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/components/search-page.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/components/search-block.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/components/pager.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/components/comments.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/components/default-views.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/components/layout-builder.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/components/webform.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/components/node-form.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/components/teaser-mode.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/components/sitemap.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/components/contact-form.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/components/ckeditor.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/theme/a-image.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/theme/min-width-993.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/theme/max-width-992.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/theme/max-min-width-992-601.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/theme/max-width-767.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/theme/max-width-600.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/theme/border-animation.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/w3-css-theme/w3-theme-light-blue.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/custom/drupal8_w3css_subtheme/css/d8w3css-subtheme-style.css?snllb1" />
+<link rel="stylesheet" media="all" href="/themes/contrib/d8w3css/css/theme/sitename-animation.css?snllb1" />
+
+    
+  </head>
+  <body class="path-view-frontpage path-node">
+        <a href="#main-content" class="visually-hidden focusable skip-link">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+      <!-- Start: Page Wrapper -->
+<div class="page-wrapper w3-col w3-clear w3-animate-opacity w3-text-theme ">
+
+    <!-- Start: Header -->
+  <header id="header" class="w3-col w3-clear w3-theme-l4 none " role="banner" aria-label="Site header">
+    <div id="header-inner" class="w3-container header-inner w3-width-100-percent">
+                  
+
+<section id="block-drupal8-w3css-subtheme-branding" data-block-plugin-id="system_branding_block" class="w3-block w3-block-wrapper block-system block-system-branding-block">
+  
+    
+        <a href="/" title="Home" rel="home" class="w3-left w3-padding-16 site-logo">
+      <img src="/sites/default/files/logo-header.png" alt="Home" />
+    </a>
+  <div class="site-name-slogan">
+    </div>
+</section>
+
+<section id="block-drupal8-w3css-subtheme-dropdownlanguage" data-block-plugin-id="dropdown_language:language_interface" class="w3-block w3-block-wrapper block-dropdown-language block-dropdown-languagelanguage-interface">
+  
+    
+      <div class="block__content">
+        <div class="dropbutton-wrapper" data-drupal-ajax-container><div class="dropbutton-widget"><ul class="dropdown-language-item dropbutton w3-ul"><li class="w3-left w3-small"><span class="language-link active-language">English</span></li><li class="w3-left w3-small"><a href="/zh-hans/node?page=15" class="language-link" title="Chinese, Simplified" hreflang="zh-hans">简体中文</a></li></ul></div></div>
+    </div>
+  </section>
+
+
+          </div>
+  </header>
+  <!-- End: Header -->
+  
+    <!-- Start: Main Navigation - Horizontal -->
+  <div id="main-navigation-h" class="w3-col w3-clear main-navigation-wrapper w3-theme " role="navigation" aria-label="Main Navigation" >
+    <div id="main-navigation-inner-h" class="w3-row main-navigation-inner-h w3-width-100-percent">
+      <div class="mobile-nav w3-hide-large w3-button w3-block w3-right-align w3-large w3-theme ">
+                <svg aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="butt" stroke-linejoin="bevel">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </div>
+      
+<nav role="navigation" aria-labelledby="block-drupal8-w3css-subtheme-main-menu-menu" id="block-drupal8-w3css-subtheme-main-menu" data-block-plugin-id="system_menu_block:main">
+            
+  <h2 class="visually-hidden" id="block-drupal8-w3css-subtheme-main-menu-menu">Main navigation</h2>
+  
+
+                    <ul  class="ul-parent ul-parent-main" role="menu">
+                                  <li class="li-item li-item-main" role="none">
+        <a href="https://www.dukekunshan.edu.cn" class="w3-button li-link li-link-main" role="menuitem">DKU Home</a>
+                  </li>
+                                <li class="li-item li-item-main" role="none">
+        <a href="/undergraduate-language-and-culture-center-faculty" class="custom-ug-lcc w3-button li-link li-link-main" role="menuitem" data-drupal-link-system-path="node/197">Undergraduate &amp; Language and Culture Center Faculty</a>
+                  </li>
+                                <li class="li-item li-item-main" role="none">
+        <a href="/graduate-faculty" class="w3-button li-link li-link-main" role="menuitem" data-drupal-link-system-path="node/198">Graduate Faculty</a>
+                  </li>
+                                <li class="li-item li-item-main" role="none">
+        <a href="https://ugstudies.dukekunshan.edu.cn/" class="w3-button li-link li-link-main" role="menuitem">Undergraduate Home</a>
+                  </li>
+                                <li class="li-item li-item-main" role="none">
+        <a href="https://graduate.dukekunshan.edu.cn/" class="w3-button li-link li-link-main" role="menuitem">Graduate Home</a>
+                  </li>
+      </ul>
+    
+
+  </nav>
+
+
+    </div>
+  </div>
+  <!-- End: Main Navigation - Horizontal -->
+  
+  
+    <!-- Start: Highlighted -->
+  <div id="highlighted" class="w3-col w3-clear w3-theme-l2 ">
+    <div id="highlighted-inner" class="d8-fade w3-row highlighted-inner w3-width-100-percent">
+      
+    <div data-drupal-messages-fallback class="hidden"></div>
+
+
+    </div>
+  </div>
+  <!-- End: Highlighted -->
+  
+  
+  
+  <!-- Start: Main -->
+  <div id="main-container" class="w3-col w3-clear w3-theme-l5 ">
+    <div id="main-container-inner" class="w3-row main-container-inner w3-width-100-percent">
+            <!-- Breadcrumb -->
+      <div class="w3-row w3-breadcrumb ">
+        
+
+<section id="block-drupal8-w3css-subtheme-breadcrumbs" data-block-plugin-id="system_breadcrumb_block" class="w3-block w3-block-wrapper block-system block-system-breadcrumb-block">
+  
+    
+      <div class="block__content">
+        <nav class="w3-block w3-section breadcrumb" role="navigation" aria-labelledby="system-breadcrumb">
+    <h2 id="system-breadcrumb" class="visually-hidden">Breadcrumb</h2>
+    <ul class="w3-ul w3-small breadcrumb">
+          <li>
+                  <a href="/">Home</a>
+              </li>
+        </ul>
+  </nav>
+
+    </div>
+  </section>
+
+
+      </div>
+      <!-- End: Breadcrumb -->
+            <!-- Start Main Container  -->
+      <div class="w3-col w3-clear w3-row-padding">
+                        <!-- Start: Main Content -->
+        <div class="w3-col main-box  w3css-content" role="main">
+          <div class="d8-fade w3-mobile ">
+            
+
+<section id="block-drupal8-w3css-subtheme-content" data-block-plugin-id="system_main_block" class="w3-block w3-block-wrapper block-system block-system-main-block">
+  
+    
+      <div class="block__content">
+      <div class="views-element-container w3-row element-container-wrapper"><div class="w3-row view view-frontpage view-id-frontpage view-display-id-page_1 js-view-dom-id-cdfd7da230e74df434f43e93c94b810405809813e50a684e7f97a4d600811968">
+  
+    
+      
+      <div class="view-content">
+          <div class="w3-row views-row">
+<article data-history-node-id="29" class="w3-row node node--type-faculty-profile node--promoted node--view-mode-teaser">
+  <header class="w3-row node__header">
+    
+          <h3  class="node__title">
+        <a href="/faculty_profiles/joseph-davies" rel="bookmark">
+<span>Joseph Davies</span>
+</a>
+      </h3>
+        
+
+    
+  </header>
+  <div class="w3-row node__content">
+        <ul class="links inline w3-ul"><li class="w3-left w3-small"><a href="/faculty_profiles/joseph-davies" rel="tag" title="Joseph Davies" hreflang="en">Read more<span class="visually-hidden"> about Joseph Davies</span></a></li></ul>
+            <div class="w3-row field field--name-body field--type-text-with-summary field--label-hidden w3-bar-item field__item">His current research focuses on socio-pragmatics, learner needs and classroom assessment. He has extensive experience designing, managing and teaching academic and professional English-language courses throughout China.
+Davies has a First Class B.Sc. (honors) in forensic science and an M.A. in Teaching English to Speakers of Other Languages with Applied Linguistics (distinction) from the University of Central Lancashire (UCLan). He also holds a Cambridge University DELTA qualification and is a Senior Fellow of the Higher Education Academy (SFHEA).</div>
+      
+  </div>
+
+</article>
+</div>
+    <div class="w3-row views-row">
+<article data-history-node-id="28" class="w3-row node node--type-faculty-profile node--promoted node--view-mode-teaser">
+  <header class="w3-row node__header">
+    
+          <h3  class="node__title">
+        <a href="/faculty_profiles/jingbo-cui" rel="bookmark">
+<span>Jingbo Cui</span>
+</a>
+      </h3>
+        
+
+    
+  </header>
+  <div class="w3-row node__content">
+        <ul class="links inline w3-ul"><li class="w3-left w3-small"><a href="/faculty_profiles/jingbo-cui" rel="tag" title="Jingbo Cui" hreflang="en">Read more<span class="visually-hidden"> about Jingbo Cui</span></a></li></ul>
+            <div class="w3-row field field--name-body field--type-text-with-summary field--label-hidden w3-bar-item field__item">His research centers on environmental economics, economics of innovation, and international trade. His research has appeared in top academic journals in the fields of environmental and resource economics, agricultural economics and energy economics.
+Recent projects include economic analysis of climate change, welfare impacts of biofuel policies, and effects of environmental policies on environmental innovation.</div>
+      
+  </div>
+
+</article>
+</div>
+    <div class="w3-row views-row">
+<article data-history-node-id="27" class="w3-row node node--type-faculty-profile node--promoted node--view-mode-teaser">
+  <header class="w3-row node__header">
+    
+          <h3  class="node__title">
+        <a href="/faculty_profiles/kaley-clements" rel="bookmark">
+<span>Kaley Clements</span>
+</a>
+      </h3>
+        
+
+    
+  </header>
+  <div class="w3-row node__content">
+        <ul class="links inline w3-ul"><li class="w3-left w3-small"><a href="/faculty_profiles/kaley-clements" rel="tag" title="Kaley Clements" hreflang="en">Read more<span class="visually-hidden"> about Kaley Clements</span></a></li></ul>
+            <div class="w3-row field field--name-body field--type-text-with-summary field--label-hidden w3-bar-item field__item">His research focuses on the intersection of social conflict, climate change and the loss of diversification under the power structures of the globalizing economy. His expertise is in documentary, filmmaking, photography, visual narratives, aural storytelling and soundscape design.
+He has produced work in Saudi Arabia, Cuba, Mexico, Vietnam and the U.S. His work has been screened internationally and he has curated film exhibitions in Shanghai.
+Clements has an M.F.A. in experimental and documentary arts from Duke University.</div>
+      
+  </div>
+
+</article>
+</div>
+    <div class="w3-row views-row">
+<article data-history-node-id="26" class="w3-row node node--type-faculty-profile node--promoted node--view-mode-teaser">
+  <header class="w3-row node__header">
+    
+          <h3  class="node__title">
+        <a href="/faculty_profiles/claudia-nisa" rel="bookmark">
+<span>Claudia Nisa</span>
+</a>
+      </h3>
+        
+
+    
+  </header>
+  <div class="w3-row node__content">
+        <ul class="links inline w3-ul"><li class="w3-left w3-small"><a href="/faculty_profiles/claudia-nisa" rel="tag" title="Claudia Nisa" hreflang="en">Read more<span class="visually-hidden"> about Claudia Nisa</span></a></li></ul>
+            <div class="w3-row field field--name-body field--type-text-with-summary field--label-hidden w3-bar-item field__item">Claudia's scientific agenda is centered around identifying what works to helps us lead healthier and more sustainable lives. Her research program focuses on the effectiveness of behavioral interventions to promote healthy and sustainable living - eg. how to best promote energy savings, reduce food waste, increase cancer screening or blood donation. She translates behavioral science into practice to tackle these critical challenges, and to respond to calls for better informed policies.</div>
+      
+  </div>
+
+</article>
+</div>
+    <div class="w3-row views-row">
+<article data-history-node-id="25" class="w3-row node node--type-faculty-profile node--promoted node--view-mode-teaser">
+  <header class="w3-row node__header">
+    
+          <h3  class="node__title">
+        <a href="/faculty_profiles/hwayoung-chun" rel="bookmark">
+<span>HwaYoung Chun</span>
+</a>
+      </h3>
+        
+
+    
+  </header>
+  <div class="w3-row node__content">
+        <ul class="links inline w3-ul"><li class="w3-left w3-small"><a href="/faculty_profiles/hwayoung-chun" rel="tag" title="HwaYoung Chun" hreflang="en">Read more<span class="visually-hidden"> about HwaYoung Chun</span></a></li></ul>
+            <div class="w3-row field field--name-body field--type-text-with-summary field--label-hidden w3-bar-item field__item">Hwa Young Chun's teaching and research, which are grounded in supporting underserved communities and underrepresented groups, focus on multicultural education/culturally responsive pedagogy (focusing on language teaching and pre-service teacher education) within the diverse classroom in international contexts. She has a varied range of teaching experiences in formal and informal schooling with diverse groups in multiples levels. Previously she has taught Korean language and educational courses in the US. 
+
+She has a Ph.D. in Curriculum and Instruction at Purdue University.
+</div>
+      
+  </div>
+
+</article>
+</div>
+    <div class="w3-row views-row">
+<article data-history-node-id="24" class="w3-row node node--type-faculty-profile node--promoted node--view-mode-teaser">
+  <header class="w3-row node__header">
+    
+          <h3  class="node__title">
+        <a href="/faculty_profiles/nellie-chu" rel="bookmark">
+<span>Nellie Chu</span>
+</a>
+      </h3>
+        
+
+    
+  </header>
+  <div class="w3-row node__content">
+        <ul class="links inline w3-ul"><li class="w3-left w3-small"><a href="/faculty_profiles/nellie-chu" rel="tag" title="Nellie Chu" hreflang="en">Read more<span class="visually-hidden"> about Nellie Chu</span></a></li></ul>
+            <div class="w3-row field field--name-body field--type-text-with-summary field--label-hidden w3-bar-item field__item">Her research focuses on global supply chains in fashion and the transnational role of migrant entrepreneurs. She has a project on West African and Korean religious communities related to the doctrine of prosperity based in Guangzhou, China.</div>
+      
+  </div>
+
+</article>
+</div>
+    <div class="w3-row views-row">
+<article data-history-node-id="23" class="w3-row node node--type-faculty-profile node--promoted node--view-mode-teaser">
+  <header class="w3-row node__header">
+    
+          <h3  class="node__title">
+        <a href="/faculty_profiles/jung-choi" rel="bookmark">
+<span>Jung Choi</span>
+</a>
+      </h3>
+        
+
+    
+  </header>
+  <div class="w3-row node__content">
+        <ul class="links inline w3-ul"><li class="w3-left w3-small"><a href="/faculty_profiles/jung-choi" rel="tag" title="Jung Choi" hreflang="en">Read more<span class="visually-hidden"> about Jung Choi</span></a></li></ul>
+            <div class="w3-row field field--name-body field--type-text-with-summary field--label-hidden w3-bar-item field__item">Her research focuses on interactions between art and technology, and contemporary visual and media culture, especially on the ways in which artistic and creative practices provide constructive criticism on our contemporary media environments. Her teaching interests at Duke Kunshan include contemporary art and visual culture, media studies and aesthetics.
+
+She is a cross-disciplinary theorist and curator who has worked at renowned institutions including Art Center Nabi and the ZKM Karlsruhe. She experiments with different creative methods in digital humanities and arts.
+
+Choi has an M.A.</div>
+      
+  </div>
+
+</article>
+</div>
+    <div class="w3-row views-row">
+<article data-history-node-id="22" class="w3-row node node--type-faculty-profile node--promoted node--view-mode-teaser">
+  <header class="w3-row node__header">
+    
+          <h3  class="node__title">
+        <a href="/faculty_profiles/jaehee-choi" rel="bookmark">
+<span>Jaehee Choi</span>
+</a>
+      </h3>
+        
+
+    
+  </header>
+  <div class="w3-row node__content">
+        <ul class="links inline w3-ul"><li class="w3-left w3-small"><a href="/faculty_profiles/jaehee-choi" rel="tag" title="Jaehee Choi" hreflang="en">Read more<span class="visually-hidden"> about Jaehee Choi</span></a></li></ul>
+            <div class="w3-row field field--name-body field--type-text-with-summary field--label-hidden w3-bar-item field__item">Her core research agenda centers on understanding how social policies can address labor market inequality and how they can be provided. As a member of the University of Texas Inequality Project (UTIP), she also studies the measurement and movement of global income inequality as well as its political implications. Her teaching fields include policy analysis, U.S. and international social policy, income inequality, and program evaluation.
+
+Choi has a B.A. in economics from the University of Chicago and a Ph.D. in public policy from the University of Texas, Austin.</div>
+      
+  </div>
+
+</article>
+</div>
+    <div class="w3-row views-row">
+<article data-history-node-id="21" class="w3-row node node--type-faculty-profile node--promoted node--view-mode-teaser">
+  <header class="w3-row node__header">
+    
+          <h3  class="node__title">
+        <a href="/faculty_profiles/chi-yeung-jimmy-choi" rel="bookmark">
+<span>Chi-Yeung (Jimmy) Choi</span>
+</a>
+      </h3>
+        
+
+    
+  </header>
+  <div class="w3-row node__content">
+        <ul class="links inline w3-ul"><li class="w3-left w3-small"><a href="/faculty_profiles/chi-yeung-jimmy-choi" rel="tag" title="Chi-Yeung (Jimmy) Choi" hreflang="en">Read more<span class="visually-hidden"> about Chi-Yeung (Jimmy) Choi</span></a></li></ul>
+            <div class="w3-row field field--name-body field--type-text-with-summary field--label-hidden w3-bar-item field__item">Chi-Yeung Choi is an applied ecologist with expertise in animal ecology, conservation biology, wetland ecology and environmental management. He studies the relationship between animals and their environment. Current study systems include the ecology of migratory birds, with a focus on their foraging and movement ecology within and between coastal intertidal wetlands. This requires extensive fieldwork in many places ranging from Alaska and East Asia to Australia and New Zealand.</div>
+      
+  </div>
+
+</article>
+</div>
+    <div class="w3-row views-row">
+<article data-history-node-id="20" class="w3-row node node--type-faculty-profile node--promoted node--view-mode-teaser">
+  <header class="w3-row node__header">
+    
+          <h3  class="node__title">
+        <a href="/faculty_profiles/seongkyung-cho" rel="bookmark">
+<span>Seongkyung Cho</span>
+</a>
+      </h3>
+        
+
+    
+  </header>
+  <div class="w3-row node__content">
+        <ul class="links inline w3-ul"><li class="w3-left w3-small"><a href="/faculty_profiles/seongkyung-cho" rel="tag" title="Seongkyung Cho" hreflang="en">Read more<span class="visually-hidden"> about Seongkyung Cho</span></a></li></ul>
+            <div class="w3-row field field--name-body field--type-text-with-summary field--label-hidden w3-bar-item field__item">Her primary research interests lie at the intersection of housing policy, public policy process, and marginalized populations. She is especially interested in how different policy actors and contexts affect public policy processes and outcomes, with a special focus on housing policy in the U.S. and East Asian countries. Her teaching interests at Duke Kunshan include computational social science and public policy analysis.
+Methodologically, she has employed a wide range of analytical approaches to understanding complex processes of public policy. In her doctoral dissertation, she examined U.S.</div>
+      
+  </div>
+
+</article>
+</div>
+
+    </div>
+  
+        <nav class="w3-center pager" role="navigation" aria-labelledby="pagination-heading">
+    <h4 id="pagination-heading" class="visually-hidden">Pagination</h4>
+    <ul class="w3-bar pager__items js-pager__items">
+                    <li class="w3-button pager__item pager__item--first">
+          <a href="?page=0" title="Go to first page">
+            <span class="visually-hidden">First page</span>
+            <span aria-hidden="true">« First</span>
+          </a>
+        </li>
+                          <li class="w3-button pager__item pager__item--previous">
+          <a href="?page=14" title="Go to previous page" rel="prev">
+            <span class="visually-hidden">Previous page</span>
+            <span aria-hidden="true">‹ Previous</span>
+          </a>
+        </li>
+                          <li class="w3-button pager__item pager__item--ellipsis" role="presentation">&hellip;</li>
+                          <li class="w3-button pager__item">
+                                          <a href="?page=9" title="Go to page 10">
+            <span class="visually-hidden">
+              Page
+            </span>10</a>
+        </li>
+              <li class="w3-button pager__item">
+                                          <a href="?page=10" title="Go to page 11">
+            <span class="visually-hidden">
+              Page
+            </span>11</a>
+        </li>
+              <li class="w3-button pager__item">
+                                          <a href="?page=11" title="Go to page 12">
+            <span class="visually-hidden">
+              Page
+            </span>12</a>
+        </li>
+              <li class="w3-button pager__item">
+                                          <a href="?page=12" title="Go to page 13">
+            <span class="visually-hidden">
+              Page
+            </span>13</a>
+        </li>
+              <li class="w3-button pager__item">
+                                          <a href="?page=13" title="Go to page 14">
+            <span class="visually-hidden">
+              Page
+            </span>14</a>
+        </li>
+              <li class="w3-button pager__item">
+                                          <a href="?page=14" title="Go to page 15">
+            <span class="visually-hidden">
+              Page
+            </span>15</a>
+        </li>
+              <li class="w3-button pager__item w3-light-gray w3-active-pager is-active">
+                                          <a href="?page=15" title="Current page">
+            <span class="visually-hidden">
+              Current page
+            </span>16</a>
+        </li>
+              <li class="w3-button pager__item">
+                                          <a href="?page=16" title="Go to page 17">
+            <span class="visually-hidden">
+              Page
+            </span>17</a>
+        </li>
+              <li class="w3-button pager__item">
+                                          <a href="?page=17" title="Go to page 18">
+            <span class="visually-hidden">
+              Page
+            </span>18</a>
+        </li>
+                                      <li class="w3-button pager__item pager__item--next">
+          <a href="?page=16" title="Go to next page" rel="next">
+            <span class="visually-hidden">Next page</span>
+            <span aria-hidden="true">Next ›</span>
+          </a>
+        </li>
+                          <li class="w3-button pager__item pager__item--last">
+          <a href="?page=17" title="Go to last page">
+            <span class="visually-hidden">Last page</span>
+            <span aria-hidden="true">Last »</span>
+          </a>
+        </li>
+          </ul>
+  </nav>
+
+              <div class="feed-icons">
+      <a href="https://faculty.dukekunshan.edu.cn/rss.xml" class="w3-panel feed-icon">
+  Subscribe to 
+</a>
+
+    </div>
+  </div>
+</div>
+
+    </div>
+  </section>
+
+
+          </div>
+        </div>
+        <!-- End: Main Content -->
+                      </div>
+      <!-- Endn: Main Container  -->
+    </div>
+  </div>
+  <!-- End: Main -->
+
+  
+  
+      <!-- Start: Footer Menu -->
+  <div id="footer-menu" class="w3-col w3-clear w3-theme-d4 ">
+    <div id="footer-menu-inner" class="w3-row footer-menu-inner w3-width-100-percent">
+      
+      <!-- Start: Bottom Menu -->
+          </div>
+  </div>
+  <!-- End: Footer Menu -->
+  
+      
+  <!-- Start: Copyright -->
+  <div id="copyright" class="w3-col w3-clear w3-theme-d5 ">
+    <div class="elementor-background-overlay"></div>
+            <!-- Start: Social Media -->
+      <div class="w3-center w3-container copyright-inner w3-mobile">
+        <a href="/" title="Home" rel="home" class="w3-center w3-padding-16 site-logo">
+          <img src="/sites/default/files/logo-header.png" alt="Home">
+        </a>
+      </div>
+      <div class="d8-fade w3-center w3-container copyright-inner w3-mobile social-media w3-width-100-percent">
+                <a href="https://www.facebook.com/DukeKunshanUniversity" title="Facebook" class="w3-opacity w3-hover-opacity-off w3-hover-text-blue w3-show-inline-block w3-xlarge w3-padding" target="_blank"><i class="fa-brands w3-social-icon fa-facebook"></i></a>
+                        <a href="https://twitter.com/DukeKunshan" title="Twitter" class="w3-opacity w3-hover-opacity-off w3-hover-text-blue w3-show-inline-block w3-xlarge w3-padding" target="_blank"><i class="fa-brands w3-social-icon fa-twitter"></i></a>
+                                <a href="https://www.linkedin.com/school/duke-kunshan-university" title="Linkedin" class="w3-opacity w3-hover-opacity-off w3-hover-text-blue w3-show-inline-block w3-xlarge w3-padding" target="_blank"><i class="fa-brands w3-social-icon fa-linkedin"></i></a>
+                                <a href="https://www.youtube.com/channel/UCSoBlCyNXxOSek8TD6pld2A" title="Youtube" class="w3-opacity w3-hover-opacity-off w3-hover-text-red w3-show-inline-block w3-xlarge w3-padding" target="_blank"><i class="fa-brands w3-social-icon fa-youtube"></i></a>
+                                      </div>
+      <div class="w3-center w3-container copyright-inner w3-mobile">
+        <p class="w3-section w3-opacity w3-hover-opacity-off">Contact Us: <a href="mailto:dku-academicaffairs@dukekunshan.edu.cn">Office of Academic Affairs</a></p>
+      </div>
+      <!-- End: Social Media -->
+      <div id="copyright-inner" class="w3-row copyright-inner w3-center w3-width-100-percent">
+            <!-- Start: Copyright -->
+      <div class="copyright-inner w3-center w3-container w3-mobile">
+        <p class="w3-section w3-opacity w3-hover-opacity-off">
+                Copyright © 2024 Duke Kunshan University - 苏ICP备16021093号
+        </p>
+      </div>
+      <!-- End: Copyright -->
+                </div>
+  </div>
+  <!-- End: Copyright -->
+  </div>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1V9WPT38CC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1V9WPT38CC');
+</script>
+<!-- End: Page Wrapper -->
+
+  </div>
+
+    
+    <script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","scriptPath":null,"pathPrefix":"","currentPath":"node","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en","currentQuery":{"page":"15"}},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"ajaxPageState":{"libraries":"core\/drupal.dropbutton,drupal8_w3css_subtheme\/d8w3css-subtheme-global,drupal8_w3css_theme\/d8w3css-gfex,drupal8_w3css_theme\/d8w3css-gfin,drupal8_w3css_theme\/d8w3css-gfin-roboto,drupal8_w3css_theme\/d8w3css-global-styling,drupal8_w3css_theme\/w3-css,drupal8_w3css_theme\/w3-css-theme-light-blue,fontawesome\/fontawesome.webfonts,system\/base,views\/views.module","theme":"drupal8_w3css_subtheme","theme_token":null},"ajaxTrustedUrl":[],"user":{"uid":0,"permissionsHash":"3408100e683a954bcd292ec064ed11b6dd8292dab2ed8ebb00e957d97cdba06c"}}</script>
+<script src="/core/assets/vendor/jquery/jquery.min.js?v=3.7.0"></script>
+<script src="/core/assets/vendor/once/once.min.js?v=1.0.1"></script>
+<script src="/core/misc/drupalSettingsLoader.js?v=10.1.1"></script>
+<script src="/core/misc/drupal.js?v=10.1.1"></script>
+<script src="/core/misc/drupal.init.js?v=10.1.1"></script>
+<script src="/core/assets/vendor/tabbable/index.umd.min.js?v=6.1.2"></script>
+<script src="/core/misc/progress.js?v=10.1.1"></script>
+<script src="/core/assets/vendor/loadjs/loadjs.min.js?v=4.2.0"></script>
+<script src="/core/misc/debounce.js?v=10.1.1"></script>
+<script src="/core/misc/announce.js?v=10.1.1"></script>
+<script src="/core/misc/message.js?v=10.1.1"></script>
+<script src="/core/misc/ajax.js?v=10.1.1"></script>
+<script src="/themes/contrib/d8w3css/js/custom.js?snllb1"></script>
+<script src="/themes/custom/drupal8_w3css_subtheme/js/d8w3css-subtheme-script.js?v=10.1.1"></script>
+<script src="/core/misc/dropbutton/dropbutton.js?v=10.1.1"></script>
+
+  </body>
+</html>
