@@ -131,7 +131,6 @@ sentencepiece==0.2.0
 setproctitle==1.3.6
 setuptools==80.9.0
 sgl-kernel==0.1.4
--e git+https://github.com/sgl-project/sglang.git@7e257cd666c0d639626487987ea8e590da1e9395#egg=sglang&subdirectory=python
 six==1.17.0
 sniffio==1.3.1
 soundfile==0.13.1
@@ -146,7 +145,6 @@ torchao==0.9.0
 torchvision==0.21.0
 tqdm==4.67.1
 traitlets==5.14.3
--e git+ssh://git@github.com/pomegranar/PIP-KAG-CD.git@bddaa6d6e63df2594b6792bf5fac080ff278a0bd#egg=transformers&subdirectory=src/transformers
 triton==3.2.0
 trl==0.12.2
 typing-inspection==0.4.1
