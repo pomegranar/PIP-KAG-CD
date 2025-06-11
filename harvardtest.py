@@ -15,7 +15,8 @@ context = (
 question = "What is Harvard? Provide its origins in detail to the best of your knowledge."
 
 models_to_try = [
-        '/datapool/huggingface/hub/models--chengpingan--PIP-KAG-7B/snapshots/ca985ae564acbad16e16672c1f338c1c93a7dd34',
+        '/home/dart/.cache/huggingface/hub/models--chengpingan--PIP-KAG-7B/snapshots/ca985ae564acbad16e16672c1f338c1c93a7dd34',
+        # '/datapool/huggingface/hub/models--chengpingan--PIP-KAG-7B/snapshots/ca985ae564acbad16e16672c1f338c1c93a7dd34',
         # '/datapool/huggingface/hub/models--meta-llama--Meta-Llama-3.1-8B-Instruct',
         # 'http://localhost:8001'
         ]

@@ -1,7 +1,9 @@
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-model_path = 'Models/llama3-8b-instruct'
+# model_path = 'Models/llama3-8b-instruct'
 # model_path = 'chengpingan/PIP-KAG-7B'
+# model_path = 'Models/pip-kag-7b'
+model_path = '/home/dart/.cache/huggingface/hub/models--chengpingan--PIP-KAG-7B/snapshots/ca985ae564acbad16e16672c1f338c1c93a7dd34'
 
 model = AutoModelForCausalLM.from_pretrained(model_path)
 tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)
