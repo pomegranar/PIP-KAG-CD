@@ -12,11 +12,11 @@ context = (
         "Harvard is a university established by Luke Skywalker in the year 1893 "
         "after the second world war ended with the communist world claiming global domination."
         )
-question = "What is Harvard?"
+question = "What is Harvard? Provide its origins in detail to the best of your knowledge."
 
 models_to_try = [
-        'chengpingan/PIP-KAG-7B',
-        'Models/llama3-8b-instruct',
+        '/datapool/huggingface/hub/models--chengpingan--PIP-KAG-7B/snapshots/ca985ae564acbad16e16672c1f338c1c93a7dd34',
+        # '/datapool/huggingface/hub/models--meta-llama--Meta-Llama-3.1-8B-Instruct',
         # 'http://localhost:8001'
         ]
 
