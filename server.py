@@ -5,6 +5,7 @@ app = FastAPI()
 llm = LLM(model="chengpingan/PIP-KAG-7B",
           tensor_parallel_size=1, dtype="float16")
 
+
 @app.post("/v1/chat/completions")
 def chat(req: dict):
     prompt = "list all 50 states of the USA."
